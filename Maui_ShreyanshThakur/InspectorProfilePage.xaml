@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Maui_ShreyanshThakur.InspectorProfilePage"
+    Title="Inspector Profile"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    SafeAreaEdges="All">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="{StaticResource PagePadding}"
+            Spacing="{StaticResource SectionSpacing}">
+
+            <!-- Page Heading -->
+            <VerticalStackLayout
+                Spacing="{StaticResource SmallSpacing}">
+
+                <Label
+                    Text="Inspector Profile"
+                    Style="{StaticResource PageTitleStyle}" />
+
+                <Label
+                    Text="View your personal and professional details"
+                    Style="{StaticResource SecondaryTextStyle}" />
+
+            </VerticalStackLayout>
+
+            <!-- Profile Header Card -->
+            <Border
+                BackgroundColor="{StaticResource SurfaceColor}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="{StaticResource BorderThickness}"
+                Padding="{StaticResource CardPadding}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle
+                        CornerRadius="{StaticResource CardCornerRadius}" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="{StaticResource ItemSpacing}">
+
+                    <!-- Profile Photo -->
+                    <Border
+                        HeightRequest="{StaticResource ProfileImageSize}"
+                        WidthRequest="{StaticResource ProfileImageSize}"
+                        Padding="0"
+                        Stroke="{StaticResource AvatarBorderColor}"
+                        StrokeThickness="{StaticResource AvatarBorderThickness}">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle
+                                CornerRadius="{StaticResource CardCornerRadius}" />
+                        </Border.StrokeShape>
+
+                        <Image
+                            Source="inspector_profile.png"
+                            Aspect="AspectFill"
+                            HeightRequest="{StaticResource ProfileImageSize}"
+                            WidthRequest="{StaticResource ProfileImageSize}" />
+
+                    </Border>
+
+                    <!-- Name and Role -->
+                    <VerticalStackLayout
+                        Spacing="{StaticResource SmallSpacing}"
+                        HorizontalOptions="Center">
+
+                        <Label
+                            Text="Shreyansh Thakur"
+                            Style="{StaticResource ProfileNameStyle}" />
+
+                        <Label
+                            Text="Senior Quality Inspector"
+                            Style="{StaticResource AccentTextStyle}" />
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Personal Information Card -->
+            <Border
+                BackgroundColor="{StaticResource SurfaceColor}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="{StaticResource BorderThickness}"
+                Padding="{StaticResource CardPadding}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle
+                        CornerRadius="{StaticResource CardCornerRadius}" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout
+                    Spacing="{StaticResource RowSpacing}">
+
+                    <Label
+                        Text="Personal Information"
+                        Style="{StaticResource SectionTitleStyle}" />
+
+                    <!-- Employee ID -->
+                    <HorizontalStackLayout
+                        Spacing="{StaticResource RowSpacing}">
+
+                        <Label
+                            Text="Employee ID"
+                            WidthRequest="{StaticResource FieldLabelWidth}"
+                            Style="{StaticResource SecondaryTextStyle}" />
+
+                        <Label
+                            Text="INS-2024-001"
+                            HorizontalOptions="FillAndExpand"
+                            FontAttributes="Bold" />
+
+                    </HorizontalStackLayout>
+
+                    <BoxView
+                        HeightRequest="{StaticResource BorderThickness}"
+                        Color="{StaticResource BorderColor}" />
+
+                    <!-- Role -->
+                    <HorizontalStackLayout
+                        Spacing="{StaticResource RowSpacing}">
+
+                        <Label
+                            Text="Role"
+                            WidthRequest="{StaticResource FieldLabelWidth}"
+                            Style="{StaticResource SecondaryTextStyle}" />
+
+                        <Label
+                            Text="Senior Inspector"
+                            HorizontalOptions="FillAndExpand"
+                            FontAttributes="Bold" />
+
+                    </HorizontalStackLayout>
+
+                    <BoxView
+                        HeightRequest="{StaticResource BorderThickness}"
+                        Color="{StaticResource BorderColor}" />
+
+                    <!-- Email -->
+                    <HorizontalStackLayout
+                        Spacing="{StaticResource RowSpacing}">
+
+                        <Label
+                            Text="Email"
+                            WidthRequest="{StaticResource FieldLabelWidth}"
+                            Style="{StaticResource SecondaryTextStyle}" />
+
+                        <Label
+                            Text="shreyansh.thakur@example.com"
+                            HorizontalOptions="FillAndExpand"
+                            LineBreakMode="WordWrap"
+                            FontAttributes="Bold" />
+
+                    </HorizontalStackLayout>
+
+                    <BoxView
+                        HeightRequest="{StaticResource BorderThickness}"
+                        Color="{StaticResource BorderColor}" />
+
+                    <!-- Phone -->
+                    <HorizontalStackLayout
+                        Spacing="{StaticResource RowSpacing}">
+
+                        <Label
+                            Text="Phone"
+                            WidthRequest="{StaticResource FieldLabelWidth}"
+                            Style="{StaticResource SecondaryTextStyle}" />
+
+                        <Label
+                            Text="+91 98765 43210"
+                            HorizontalOptions="FillAndExpand"
+                            FontAttributes="Bold" />
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Edit Profile Button -->
+            <Button
+                Text="Edit Profile"
+                Style="{StaticResource PrimaryButtonStyle}"
+                Clicked="OnEditProfileClicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Page spacing -->
+    <x:Double x:Key="PagePadding">24</x:Double>
+    <x:Double x:Key="SectionSpacing">24</x:Double>
+    <x:Double x:Key="CardPadding">20</x:Double>
+    <x:Double x:Key="ItemSpacing">14</x:Double>
+    <x:Double x:Key="RowSpacing">12</x:Double>
+    <x:Double x:Key="SmallSpacing">5</x:Double>
+
+    <!-- Profile dimensions -->
+    <x:Double x:Key="ProfileImageSize">120</x:Double>
+    <x:Double x:Key="FieldLabelWidth">115</x:Double>
+
+    <!-- Font sizes -->
+    <x:Double x:Key="PageTitleSize">26</x:Double>
+    <x:Double x:Key="ProfileNameSize">23</x:Double>
+    <x:Double x:Key="SectionTitleSize">18</x:Double>
+    <x:Double x:Key="SubtitleSize">15</x:Double>
+    <x:Double x:Key="BodyFontSize">14</x:Double>
+    <x:Double x:Key="ButtonFontSize">16</x:Double>
+
+    <!-- Other dimensions -->
+    <x:Double x:Key="BorderThickness">1</x:Double>
+    <x:Double x:Key="AvatarBorderThickness">2</x:Double>
+    <x:Double x:Key="ButtonHeight">52</x:Double>
+
+    <CornerRadius x:Key="CardCornerRadius">16</CornerRadius>
+    <x:Int32 x:Key="ButtonCornerRadius">12</x:Int32>
+
+</ResourceDictionary>

@@ -5,6 +5,10 @@ namespace Maui_ShreyanshThakur
         public AppShell()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(
+                nameof(InspectorProfilePage),
+                typeof(InspectorProfilePage));
         }
     }
 }
