@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Maui_ShreyanshThakur.InspectionListListViewPage"
+    Title="Inspections - ListView"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    SafeAreaEdges="All">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Page Header -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="{StaticResource InspectionListPadding}"
+            Spacing="{StaticResource SmallSpacing}">
+
+            <Label
+                Text="Inspections - ListView"
+                FontSize="{StaticResource InspectionListHeaderSize}"
+                FontAttributes="Bold"
+                TextColor="{StaticResource PrimaryTextColor}" />
+
+            <Label
+                Text="The same inspection records using ListView"
+                Style="{StaticResource SecondaryTextStyle}" />
+
+        </VerticalStackLayout>
+
+        <!-- ListView -->
+        <ListView
+            Grid.Row="1"
+            x:Name="InspectionList"
+            ItemsSource="{Binding Inspections}"
+            HasUnevenRows="True"
+            SeparatorVisibility="None"
+            SelectionMode="Single"
+            ItemSelected="OnItemSelected"
+            Margin="{StaticResource InspectionListPadding}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+
+                        <Border
+                            BackgroundColor="{StaticResource SurfaceColor}"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeThickness="{StaticResource BorderThickness}"
+                            Padding="{StaticResource InspectionListCardPadding}"
+                            Margin="0,0,0,12">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle
+                                    CornerRadius="{StaticResource InspectionListCornerRadius}" />
+                            </Border.StrokeShape>
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+
+                                    <VisualState Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter
+                                                Property="BackgroundColor"
+                                                Value="{StaticResource SurfaceColor}" />
+                                            <Setter
+                                                Property="Stroke"
+                                                Value="{StaticResource BorderColor}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter
+                                                Property="BackgroundColor"
+                                                Value="{StaticResource SelectedInspectionBackgroundColor}" />
+                                            <Setter
+                                                Property="Stroke"
+                                                Value="{StaticResource AccentColor}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                RowDefinitions="Auto,Auto,Auto"
+                                ColumnSpacing="{StaticResource InspectionListSpacing}"
+                                RowSpacing="{StaticResource InspectionListCardSpacing}">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Title}"
+                                    FontSize="{StaticResource InspectionListTitleSize}"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource PrimaryTextColor}" />
+
+                                <Border
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Padding="{StaticResource InspectionListStatusPadding}"
+                                    BackgroundColor="{StaticResource BorderColor}"
+                                    HorizontalOptions="End">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle
+                                            CornerRadius="{StaticResource InspectionListStatusCornerRadius}" />
+                                    </Border.StrokeShape>
+
+                                    <Label
+                                        Text="{Binding Status}"
+                                        FontSize="{StaticResource InspectionListMetaSize}"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource PrimaryTextColor}">
+
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Status}"
+                                                Value="Pending">
+                                                <Setter
+                                                    Property="TextColor"
+                                                    Value="{StaticResource PendingInspectionColor}" />
+                                            </DataTrigger>
+
+                                            <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Status}"
+                                                Value="In Progress">
+                                                <Setter
+                                                    Property="TextColor"
+                                                    Value="{StaticResource InProgressInspectionColor}" />
+                                            </DataTrigger>
+
+                                            <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Status}"
+                                                Value="Completed">
+                                                <Setter
+                                                    Property="TextColor"
+                                                    Value="{StaticResource CompletedInspectionColor}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+
+                                </Border>
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Text="{Binding Site, StringFormat='Site: {0}'}"
+                                    FontSize="{StaticResource InspectionListMetaSize}"
+                                    TextColor="{StaticResource SecondaryTextColor}" />
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Text="{Binding ScheduledDate, StringFormat='{0:dd MMM yyyy}'}"
+                                    FontSize="{StaticResource InspectionListMetaSize}"
+                                    TextColor="{StaticResource SecondaryTextColor}" />
+
+                            </Grid>
+
+                        </Border>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </Grid>
+
+</ContentPage>

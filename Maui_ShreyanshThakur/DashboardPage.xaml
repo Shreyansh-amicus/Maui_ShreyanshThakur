@@ -13,16 +13,24 @@
             Spacing="{StaticResource SectionSpacing}">
 
             <!-- Page Heading -->
-            <VerticalStackLayout Spacing="{StaticResource SmallSpacing}">
-                <Label
-                    Text="Overview"
-                    FontSize="{StaticResource PageTitleSize}"
-                    FontAttributes="Bold"
-                    TextColor="{StaticResource PrimaryTextColor}" />
+            <!-- Inspection List Navigation -->
+            <VerticalStackLayout
+    Spacing="{StaticResource ItemSpacing}">
 
                 <Label
-                    Text="Here's your inspection activity"
-                    Style="{StaticResource SecondaryTextStyle}" />
+        Text="ListView Comparison"
+        Style="{StaticResource SectionTitleStyle}" />
+
+                <Button
+        Text="Open CollectionView"
+        Style="{StaticResource PrimaryButtonStyle}"
+        Clicked="OnOpenCollectionViewClicked" />
+
+                <Button
+        Text="Open ListView"
+        Style="{StaticResource PrimaryButtonStyle}"
+        Clicked="OnOpenListViewClicked" />
+
             </VerticalStackLayout>
 
             <!-- Summary Cards -->

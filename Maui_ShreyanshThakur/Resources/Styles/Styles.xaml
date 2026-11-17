@@ -137,6 +137,8 @@
             Property="HeightRequest"
             Value="{StaticResource ButtonHeight}" />
 
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+
     </Style>
 
 </ResourceDictionary>

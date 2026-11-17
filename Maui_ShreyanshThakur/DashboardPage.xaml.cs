@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace Maui_ShreyanshThakur
+﻿namespace Maui_ShreyanshThakur
 {
     public partial class DashboardPage : ContentPage
     {
@@ -8,5 +6,21 @@ namespace Maui_ShreyanshThakur
         {
             InitializeComponent();
         }
+
+        private async void OnOpenCollectionViewClicked(
+            object sender,
+            EventArgs e)
+        {
+            await Shell.Current.GoToAsync(
+                nameof(InspectionListPage));
+        }
+
+        private async void OnOpenListViewClicked(
+            object sender,
+            EventArgs e)
+        {
+            await Shell.Current.GoToAsync(
+                nameof(InspectionListListViewPage));
+        }
     }
-}   
+}

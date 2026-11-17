@@ -9,6 +9,14 @@ namespace Maui_ShreyanshThakur
             Routing.RegisterRoute(
                 nameof(InspectorProfilePage),
                 typeof(InspectorProfilePage));
+
+            Routing.RegisterRoute(
+                nameof(InspectionListPage),
+                typeof(InspectionListPage));
+
+            Routing.RegisterRoute(
+                nameof(InspectionListListViewPage),
+                typeof(InspectionListListViewPage));
         }
     }
 }
