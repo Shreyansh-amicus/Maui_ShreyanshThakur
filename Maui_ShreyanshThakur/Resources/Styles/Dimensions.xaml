@@ -32,4 +32,29 @@
     <CornerRadius x:Key="CardCornerRadius">16</CornerRadius>
     <x:Int32 x:Key="ButtonCornerRadius">12</x:Int32>
 
+
+    <Thickness x:Key="PriorityTagMargin">0,0,8,8</Thickness>
+    <Thickness x:Key="PriorityTagPadding">8,5</Thickness>
+
+    <x:Double x:Key="DashboardMetricSize">28</x:Double>
+    <x:Double x:Key="DashboardCardTitleSize">14</x:Double>
+    <x:Double x:Key="InspectionTitleSize">16</x:Double>
+    <x:Double x:Key="InspectionCardSpacing">8</x:Double>
+
+    <Thickness x:Key="StatusTagPadding">10,5</Thickness>
+
+    <!-- Inspection List -->
+    <x:Double x:Key="InspectionListTitleSize">16</x:Double>
+    <x:Double x:Key="InspectionListMetaSize">13</x:Double>
+    <x:Double x:Key="InspectionListSpacing">12</x:Double>
+    <x:Double x:Key="InspectionListCardSpacing">6</x:Double>
+    <x:Double x:Key="InspectionListHeaderSize">26</x:Double>
+
+    <Thickness x:Key="InspectionListPadding">16</Thickness>
+    <Thickness x:Key="InspectionListCardPadding">16</Thickness>
+    <Thickness x:Key="InspectionListStatusPadding">10,5</Thickness>
+
+    <CornerRadius x:Key="InspectionListCornerRadius">14</CornerRadius>
+    <CornerRadius x:Key="InspectionListStatusCornerRadius">10</CornerRadius>
+
 </ResourceDictionary>

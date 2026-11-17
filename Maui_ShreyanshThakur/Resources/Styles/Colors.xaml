@@ -17,4 +17,29 @@
     <Color x:Key="BorderColor">#E5E7EB</Color>
     <Color x:Key="AvatarBorderColor">#D1D5DB</Color>
 
+    <Color x:Key="HighPriorityColor">#DC2626</Color>
+    <Color x:Key="MediumPriorityColor">#D97706</Color>
+    <Color x:Key="LowPriorityColor">#059669</Color>
+
+    <Color x:Key="PendingStatusBackgroundColor">#FEF3C7</Color>
+    <Color x:Key="PendingStatusTextColor">#92400E</Color>
+
+    <Color x:Key="InProgressStatusBackgroundColor">#DBEAFE</Color>
+    <Color x:Key="InProgressStatusTextColor">#1D4ED8</Color>
+
+    <Color x:Key="CompletedStatusBackgroundColor">#D1FAE5</Color>
+    <Color x:Key="CompletedStatusTextColor">#047857</Color>
+
+    <!-- Inspection List -->
+    <Color x:Key="SelectedInspectionBackgroundColor">#DBEAFE</Color>
+
+    <Color x:Key="PendingInspectionColor">#92400E</Color>
+    <Color x:Key="PendingInspectionBackgroundColor">#FEF3C7</Color>
+
+    <Color x:Key="InProgressInspectionColor">#1D4ED8</Color>
+    <Color x:Key="InProgressInspectionBackgroundColor">#DBEAFE</Color>
+
+    <Color x:Key="CompletedInspectionColor">#047857</Color>
+    <Color x:Key="CompletedInspectionBackgroundColor">#D1FAE5</Color>
+
 </ResourceDictionary>

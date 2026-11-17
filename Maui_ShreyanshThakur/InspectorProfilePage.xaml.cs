@@ -1,5 +1,4 @@
-﻿
-namespace Maui_ShreyanshThakur
+﻿namespace Maui_ShreyanshThakur
 {
     public partial class InspectorProfilePage : ContentPage
     {
