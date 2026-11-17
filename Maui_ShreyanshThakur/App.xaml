@@ -1,0 +1,11 @@
+﻿<Application xmlns:local="clr-namespace:Maui_ShreyanshThakur"
+             x:Class="Maui_ShreyanshThakur.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
