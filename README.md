@@ -364,37 +364,15 @@ The objective was to ensure:
 - The inspection list remains accessible.
 - Layout spacing adapts to different screen sizes.
 
-### Test Matrix
-
-| Device Size | Orientation | Result |
-|---|---|---|
-| Small emulator | Portrait | [Record result] |
-| Small emulator | Landscape | [Record result] |
-| Large emulator | Portrait | [Record result] |
-| Large emulator | Landscape | [Record result] |
-
-### Changes Made During Testing
-
-[Document the actual layout changes made after testing. For example: adjusting card spacing, reducing unnecessary padding, allowing priority tags to wrap, or modifying layout proportions.]
 
 ### Screenshots
 
-Screenshots documenting the layout before and after responsive adjustments are stored in:
+Vertical layout             
+![Vertical layout](docs/screenshots/Vertical%20layout.png)
 
-```text
-docs/Screenshots/
-```
 
-Suggested screenshot naming:
-
-```text
-docs/Screenshots/
-├── dashboard-before-small-portrait.png
-├── dashboard-after-small-portrait.png
-├── dashboard-after-small-landscape.png
-├── dashboard-after-large-portrait.png
-└── dashboard-after-large-landscape.png
-```
+Landscape layout           
+![Landscape layout](docs/screenshots/Landscape%20layout.png)         
 
 ### Result
 
