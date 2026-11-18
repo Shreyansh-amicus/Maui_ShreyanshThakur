@@ -3,6 +3,7 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Maui_ShreyanshThakur.Controls"
     x:Class="Maui_ShreyanshThakur.InspectionListPage"
     Title="Inspections"
     BackgroundColor="{StaticResource PageBackgroundColor}"
@@ -21,10 +22,6 @@
             <Label
                 Text="Inspections"
                 Style="{StaticResource PageTitleStyle}" />
-
-            <Label
-                Text="View and manage scheduled inspections"
-                Style="{StaticResource PageSubtitleStyle}" />
 
             <Label
                 Text="{Binding InspectionCountText}"
@@ -75,6 +72,7 @@
                         ItemSpacing="{StaticResource InspectionListItemSpacing}" />
                 </CollectionView.ItemsLayout>
 
+                <!-- Empty State -->
                 <CollectionView.EmptyView>
                     <VerticalStackLayout
                         Padding="30"
@@ -93,8 +91,8 @@
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
 
+                <!-- CollectionView Item -->
                 <CollectionView.ItemTemplate>
-
                     <DataTemplate>
 
                         <Border
@@ -105,6 +103,7 @@
                                 ColumnDefinitions="*,Auto"
                                 RowSpacing="{StaticResource InspectionListCardSpacing}">
 
+                                <!-- Inspection Title -->
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
@@ -112,6 +111,7 @@
                                     Text="{Binding Title}"
                                     Style="{StaticResource InspectionListTitleStyle}" />
 
+                                <!-- Site -->
                                 <HorizontalStackLayout
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -127,17 +127,13 @@
 
                                 </HorizontalStackLayout>
 
-                                <Border
+                                <!-- Reusable StatusBadge -->
+                                <controls:StatusBadge
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    Style="{StaticResource InspectionListStatusBadgeStyle}">
+                                    Status="{Binding Status}" />
 
-                                    <Label
-                                        Text="{Binding Status}"
-                                        Style="{StaticResource InspectionListStatusTextStyle}" />
-
-                                </Border>
-
+                                <!-- Scheduled Date -->
                                 <HorizontalStackLayout
                                     Grid.Row="2"
                                     Grid.Column="0"
@@ -160,11 +156,9 @@
                         </Border>
 
                     </DataTemplate>
-
                 </CollectionView.ItemTemplate>
 
             </CollectionView>
-
 
             <!-- ListView -->
             <ListView
@@ -178,77 +172,79 @@
                 BackgroundColor="Transparent">
 
                 <ListView.ItemTemplate>
-
                     <DataTemplate>
 
                         <ViewCell>
 
-                            <Border
-                                Style="{StaticResource InspectionListCardStyle}">
+                            <!-- Wrapper provides spacing between ListView cards -->
+                            <Grid
+                                Padding="{StaticResource InspectionListViewItemSpacing}">
 
-                                <Grid
-                                    RowDefinitions="Auto,Auto,Auto"
-                                    ColumnDefinitions="*,Auto"
-                                    RowSpacing="{StaticResource InspectionListCardSpacing}">
+                                <Border
+                                    Style="{StaticResource InspectionListCardStyle}">
 
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Text="{Binding Title}"
-                                        Style="{StaticResource InspectionListTitleStyle}" />
+                                    <Grid
+                                        RowDefinitions="Auto,Auto,Auto"
+                                        ColumnDefinitions="*,Auto"
+                                        RowSpacing="{StaticResource InspectionListCardSpacing}">
 
-                                    <HorizontalStackLayout
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Spacing="6">
-
+                                        <!-- Inspection Title -->
                                         <Label
-                                            Text="Site:"
-                                            Style="{StaticResource InspectionListMetaLabelStyle}" />
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Title}"
+                                            Style="{StaticResource InspectionListTitleStyle}" />
 
-                                        <Label
-                                            Text="{Binding Site}"
-                                            Style="{StaticResource InspectionListMetaValueStyle}" />
+                                        <!-- Site -->
+                                        <HorizontalStackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Spacing="6">
 
-                                    </HorizontalStackLayout>
+                                            <Label
+                                                Text="Site:"
+                                                Style="{StaticResource InspectionListMetaLabelStyle}" />
 
-                                    <Border
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Style="{StaticResource InspectionListStatusBadgeStyle}">
+                                            <Label
+                                                Text="{Binding Site}"
+                                                Style="{StaticResource InspectionListMetaValueStyle}" />
 
-                                        <Label
-                                            Text="{Binding Status}"
-                                            Style="{StaticResource InspectionListStatusTextStyle}" />
+                                        </HorizontalStackLayout>
 
-                                    </Border>
+                                        <!-- Reusable StatusBadge -->
+                                        <controls:StatusBadge
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Status="{Binding Status}" />
 
-                                    <HorizontalStackLayout
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Spacing="6">
+                                        <!-- Scheduled Date -->
+                                        <HorizontalStackLayout
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Spacing="6">
 
-                                        <Label
-                                            Text="Scheduled:"
-                                            Style="{StaticResource InspectionListMetaLabelStyle}" />
+                                            <Label
+                                                Text="Scheduled:"
+                                                Style="{StaticResource InspectionListMetaLabelStyle}" />
 
-                                        <Label
-                                            Text="{Binding ScheduledDate,
-                                                StringFormat='{0:dd MMM yyyy}'}"
-                                            Style="{StaticResource InspectionListMetaValueStyle}" />
+                                            <Label
+                                                Text="{Binding ScheduledDate,
+                                                    StringFormat='{0:dd MMM yyyy}'}"
+                                                Style="{StaticResource InspectionListMetaValueStyle}" />
 
-                                    </HorizontalStackLayout>
+                                        </HorizontalStackLayout>
 
-                                </Grid>
+                                    </Grid>
 
-                            </Border>
+                                </Border>
+
+                            </Grid>
 
                         </ViewCell>
 
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
 
             </ListView>

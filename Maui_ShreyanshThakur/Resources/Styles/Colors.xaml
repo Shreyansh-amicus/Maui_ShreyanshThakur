@@ -82,4 +82,18 @@
     <Color x:Key="InspectionViewUnselectedBackgroundColor">#FFFFFF</Color>
     <Color x:Key="InspectionViewUnselectedTextColor">#64748B</Color>
 
+    <!-- Status Badge Colors -->
+
+    <Color x:Key="StatusPendingBackgroundColor">#FFF3CD</Color>
+    <Color x:Key="StatusPendingTextColor">#856404</Color>
+
+    <Color x:Key="StatusInProgressBackgroundColor">#DBEAFE</Color>
+    <Color x:Key="StatusInProgressTextColor">#1D4ED8</Color>
+
+    <Color x:Key="StatusCompletedBackgroundColor">#D1FAE5</Color>
+    <Color x:Key="StatusCompletedTextColor">#065F46</Color>
+
+    <Color x:Key="ReusableCardBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="ReusableCardBorderColor">#E5E7EB</Color>
+
 </ResourceDictionary>

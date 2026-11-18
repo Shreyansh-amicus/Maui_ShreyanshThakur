@@ -2007,4 +2007,91 @@
 
     </Style>
 
+    <!-- Dashboard Filter Button -->
+
+    <Style
+    x:Key="DashboardFilterButtonStyle"
+    TargetType="Border">
+
+        <Setter
+        Property="BackgroundColor"
+        Value="{StaticResource PrimaryColor}" />
+
+        <Setter
+        Property="StrokeThickness"
+        Value="0" />
+
+        <Setter
+        Property="StrokeShape"
+        Value="RoundRectangle 8" />
+
+        <Setter
+        Property="Padding"
+        Value="{StaticResource DashboardFilterButtonPadding}" />
+
+        <Setter
+        Property="VerticalOptions"
+        Value="Center" />
+
+    </Style>
+
+
+    <!-- Dashboard Filter Button Content -->
+
+    <Style
+    x:Key="DashboardFilterButtonContentStyle"
+    TargetType="HorizontalStackLayout">
+
+        <Setter
+        Property="Spacing"
+        Value="{StaticResource DashboardFilterButtonSpacing}" />
+
+        <Setter
+        Property="VerticalOptions"
+        Value="Center" />
+
+    </Style>
+
+
+    <!-- Dashboard Filter Button Label -->
+
+    <Style
+    x:Key="DashboardFilterButtonLabelStyle"
+    TargetType="Label">
+
+        <Setter
+        Property="TextColor"
+        Value="{StaticResource WhiteColor}" />
+
+        <Setter
+        Property="FontFamily"
+        Value="PoppinsSemiBold" />
+
+        <Setter
+        Property="FontSize"
+        Value="{StaticResource DashboardFilterButtonFontSize}" />
+
+        <Setter
+        Property="VerticalTextAlignment"
+        Value="Center" />
+
+    </Style>
+
+    <!-- Reusable Card ControlTemplate -->
+
+    <ControlTemplate x:Key="ReusableCardTemplate">
+
+        <Border
+        BackgroundColor="{StaticResource ReusableCardBackgroundColor}"
+        Stroke="{StaticResource ReusableCardBorderColor}"
+        StrokeThickness="{StaticResource ReusableCardBorderThickness}"
+        StrokeShape="RoundRectangle 16"
+        Padding="{StaticResource ReusableCardPadding}">
+
+            <ContentPresenter />
+
+        </Border>
+
+    </ControlTemplate>
+
 </ResourceDictionary>

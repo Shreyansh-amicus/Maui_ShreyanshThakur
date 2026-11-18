@@ -20,5 +20,12 @@
         {
             await Shell.Current.GoToAsync(nameof(InspectorProfilePage));
         }
+
+        private async void OnOpenFilterClicked(
+            object sender,
+            TappedEventArgs e)
+        {
+            await Navigation.PushAsync(new InspectionFilterPage());
+        }
     }
 }
