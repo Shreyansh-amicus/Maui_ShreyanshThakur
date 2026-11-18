@@ -17,13 +17,15 @@
 
             <Label
                 Text="Inspections - ListView"
+                FontFamily="PoppinsSemiBold"
                 FontSize="{StaticResource InspectionListHeaderSize}"
-                FontAttributes="Bold"
                 TextColor="{StaticResource PrimaryTextColor}" />
 
             <Label
                 Text="The same inspection records using ListView"
-                Style="{StaticResource SecondaryTextStyle}" />
+                FontFamily="PoppinsRegular"
+                FontSize="{StaticResource BodyFontSize}"
+                TextColor="{StaticResource SecondaryTextColor}" />
 
         </VerticalStackLayout>
 
@@ -48,40 +50,12 @@
                             Stroke="{StaticResource BorderColor}"
                             StrokeThickness="{StaticResource BorderThickness}"
                             Padding="{StaticResource InspectionListCardPadding}"
-                            Margin="0,0,0,12">
+                            Margin="{StaticResource InspectionListCardMargin}">
 
                             <Border.StrokeShape>
                                 <RoundRectangle
                                     CornerRadius="{StaticResource InspectionListCornerRadius}" />
                             </Border.StrokeShape>
-
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-
-                                    <VisualState Name="Normal">
-                                        <VisualState.Setters>
-                                            <Setter
-                                                Property="BackgroundColor"
-                                                Value="{StaticResource SurfaceColor}" />
-                                            <Setter
-                                                Property="Stroke"
-                                                Value="{StaticResource BorderColor}" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter
-                                                Property="BackgroundColor"
-                                                Value="{StaticResource SelectedInspectionBackgroundColor}" />
-                                            <Setter
-                                                Property="Stroke"
-                                                Value="{StaticResource AccentColor}" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
 
                             <Grid
                                 ColumnDefinitions="*,Auto"
@@ -89,46 +63,68 @@
                                 ColumnSpacing="{StaticResource InspectionListSpacing}"
                                 RowSpacing="{StaticResource InspectionListCardSpacing}">
 
+                                <!-- Inspection Title -->
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Text="{Binding Title}"
+                                    FontFamily="PoppinsSemiBold"
                                     FontSize="{StaticResource InspectionListTitleSize}"
-                                    FontAttributes="Bold"
-                                    TextColor="{StaticResource PrimaryTextColor}" />
+                                    TextColor="{StaticResource PrimaryTextColor}"
+                                    VerticalOptions="Center" />
 
+                                <!-- Status Badge -->
                                 <Border
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Padding="{StaticResource InspectionListStatusPadding}"
-                                    BackgroundColor="{StaticResource BorderColor}"
-                                    HorizontalOptions="End">
+                                    BackgroundColor="{StaticResource PendingInspectionBackgroundColor}"
+                                    StrokeThickness="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center">
 
                                     <Border.StrokeShape>
                                         <RoundRectangle
                                             CornerRadius="{StaticResource InspectionListStatusCornerRadius}" />
                                     </Border.StrokeShape>
 
+                                    <Border.Triggers>
+
+                                        <DataTrigger
+                                            TargetType="Border"
+                                            Binding="{Binding Status}"
+                                            Value="In Progress">
+
+                                            <Setter
+                                                Property="BackgroundColor"
+                                                Value="{StaticResource InProgressInspectionBackgroundColor}" />
+                                        </DataTrigger>
+
+                                        <DataTrigger
+                                            TargetType="Border"
+                                            Binding="{Binding Status}"
+                                            Value="Completed">
+
+                                            <Setter
+                                                Property="BackgroundColor"
+                                                Value="{StaticResource CompletedInspectionBackgroundColor}" />
+                                        </DataTrigger>
+
+                                    </Border.Triggers>
+
                                     <Label
                                         Text="{Binding Status}"
+                                        FontFamily="PoppinsSemiBold"
                                         FontSize="{StaticResource InspectionListMetaSize}"
-                                        FontAttributes="Bold"
-                                        TextColor="{StaticResource PrimaryTextColor}">
+                                        TextColor="{StaticResource PendingInspectionColor}">
 
                                         <Label.Triggers>
-                                            <DataTrigger
-                                                TargetType="Label"
-                                                Binding="{Binding Status}"
-                                                Value="Pending">
-                                                <Setter
-                                                    Property="TextColor"
-                                                    Value="{StaticResource PendingInspectionColor}" />
-                                            </DataTrigger>
 
                                             <DataTrigger
                                                 TargetType="Label"
                                                 Binding="{Binding Status}"
                                                 Value="In Progress">
+
                                                 <Setter
                                                     Property="TextColor"
                                                     Value="{StaticResource InProgressInspectionColor}" />
@@ -138,28 +134,34 @@
                                                 TargetType="Label"
                                                 Binding="{Binding Status}"
                                                 Value="Completed">
+
                                                 <Setter
                                                     Property="TextColor"
                                                     Value="{StaticResource CompletedInspectionColor}" />
                                             </DataTrigger>
+
                                         </Label.Triggers>
                                     </Label>
 
                                 </Border>
 
+                                <!-- Site -->
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Text="{Binding Site, StringFormat='Site: {0}'}"
+                                    FontFamily="PoppinsRegular"
                                     FontSize="{StaticResource InspectionListMetaSize}"
                                     TextColor="{StaticResource SecondaryTextColor}" />
 
+                                <!-- Scheduled Date -->
                                 <Label
                                     Grid.Row="2"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Text="{Binding ScheduledDate, StringFormat='{0:dd MMM yyyy}'}"
+                                    FontFamily="PoppinsRegular"
                                     FontSize="{StaticResource InspectionListMetaSize}"
                                     TextColor="{StaticResource SecondaryTextColor}" />
 

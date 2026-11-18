@@ -4,7 +4,34 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- Base style for labels -->
+    <!-- ========================================================= -->
+    <!-- SHARED SHAPES                                              -->
+    <!-- ========================================================= -->
+
+    <RoundRectangle
+        x:Key="CardShape"
+        CornerRadius="{StaticResource CardCornerRadius}" />
+
+    <RoundRectangle
+        x:Key="TagShape"
+        CornerRadius="{StaticResource ButtonCornerRadius}" />
+
+    <RoundRectangle
+        x:Key="DashboardPriorityTagShape"
+        CornerRadius="{StaticResource DashboardPriorityCornerRadius}" />
+
+    <RoundRectangle
+        x:Key="DashboardViewAllShape"
+        CornerRadius="{StaticResource DashboardViewAllCornerRadius}" />
+
+    <RoundRectangle
+        x:Key="DashboardInspectionTagShape"
+        CornerRadius="{StaticResource DashboardInspectionTagCornerRadius}" />
+
+    <!-- ========================================================= -->
+    <!-- BASE LABEL STYLES                                          -->
+    <!-- ========================================================= -->
+
     <Style
         x:Key="DefaultLabelStyle"
         TargetType="Label">
@@ -19,12 +46,14 @@
 
     </Style>
 
-    <!-- Implicit Label style -->
+    <!-- Implicit Label Style -->
+
     <Style
         TargetType="Label"
         BasedOn="{StaticResource DefaultLabelStyle}" />
 
-    <!-- Explicit style: Page title -->
+    <!-- Page Title -->
+
     <Style
         x:Key="PageTitleStyle"
         TargetType="Label"
@@ -40,7 +69,8 @@
 
     </Style>
 
-    <!-- Explicit style: Profile name -->
+    <!-- Profile Name -->
+
     <Style
         x:Key="ProfileNameStyle"
         TargetType="Label"
@@ -60,7 +90,8 @@
 
     </Style>
 
-    <!-- Explicit style: Section heading -->
+    <!-- Section Title -->
+
     <Style
         x:Key="SectionTitleStyle"
         TargetType="Label"
@@ -76,7 +107,8 @@
 
     </Style>
 
-    <!-- Explicit style: Secondary information -->
+    <!-- Secondary Text -->
+
     <Style
         x:Key="SecondaryTextStyle"
         TargetType="Label"
@@ -88,7 +120,8 @@
 
     </Style>
 
-    <!-- Explicit style: Accent text -->
+    <!-- Accent Text -->
+
     <Style
         x:Key="AccentTextStyle"
         TargetType="Label"
@@ -108,7 +141,12 @@
 
     </Style>
 
-    <!-- Explicit style: Profile button -->
+    <!-- ========================================================= -->
+    <!-- BUTTON STYLES                                              -->
+    <!-- ========================================================= -->
+
+    <!-- Primary Button -->
+
     <Style
         x:Key="PrimaryButtonStyle"
         TargetType="Button">
@@ -137,7 +175,1835 @@
             Property="HeightRequest"
             Value="{StaticResource ButtonHeight}" />
 
-        <Setter Property="FontFamily" Value="PoppinsRegular" />
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+    </Style>
+
+    <!-- Secondary Button -->
+
+    <Style
+        x:Key="SecondaryButtonStyle"
+        TargetType="Button">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource TransparentColor}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource AccentColor}" />
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource ButtonFontSize}" />
+
+        <Setter
+            Property="HeightRequest"
+            Value="{StaticResource ButtonHeight}" />
+
+        <Setter
+            Property="CornerRadius"
+            Value="{StaticResource ButtonCornerRadius}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION FILTER STYLES                                   -->
+    <!-- ========================================================= -->
+
+    <!-- Filter Page Title -->
+
+    <Style
+        x:Key="FilterPageTitleStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource PageTitleSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+    </Style>
+
+    <!-- Filter Description -->
+
+    <Style
+        x:Key="FilterDescriptionStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Filter Field Label -->
+
+    <Style
+        x:Key="FilterFieldLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+    </Style>
+
+    <!-- Filter Helper Text -->
+
+    <Style
+        x:Key="FilterHelperLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Filter Entry -->
+
+    <Style
+        x:Key="FilterInputStyle"
+        TargetType="Entry">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource SurfaceColor}" />
+
+    </Style>
+
+    <!-- Filter Picker -->
+
+    <Style
+        x:Key="FilterPickerStyle"
+        TargetType="Picker">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource SurfaceColor}" />
+
+    </Style>
+
+    <!-- Filter DatePicker -->
+
+    <Style
+        x:Key="FilterDatePickerStyle"
+        TargetType="DatePicker">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource SurfaceColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- GENERAL CARD STYLES                                        -->
+    <!-- ========================================================= -->
+
+    <!-- Dashboard Summary Card -->
+
+    <Style
+        x:Key="DashboardCardStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource SurfaceColor}" />
+
+        <Setter
+            Property="Stroke"
+            Value="{StaticResource BorderColor}" />
+
+        <Setter
+            Property="StrokeThickness"
+            Value="{StaticResource BorderThickness}" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource CardPadding}" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource CardShape}" />
+
+    </Style>
+
+    <!-- Inspection Card -->
+
+    <Style
+        x:Key="InspectionCardStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource SurfaceColor}" />
+
+        <Setter
+            Property="Stroke"
+            Value="{StaticResource BorderColor}" />
+
+        <Setter
+            Property="StrokeThickness"
+            Value="{StaticResource BorderThickness}" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource CardPadding}" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource CardShape}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD CARD STYLES                                      -->
+    <!-- ========================================================= -->
+
+    <!-- Dashboard Card Heading -->
+
+    <Style
+        x:Key="DashboardCardHeadingStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardCardTitleSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Dashboard Card Description -->
+
+    <Style
+        x:Key="DashboardCardDescriptionStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Dashboard Metric -->
+
+    <Style
+        x:Key="DashboardMetricStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardMetricSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+    </Style>
+
+    <!-- Pending Metric -->
+
+    <Style
+        x:Key="PendingMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource HighPriorityColor}" />
+
+    </Style>
+
+    <!-- In Progress Metric -->
+
+    <Style
+        x:Key="InProgressMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource AccentColor}" />
+
+    </Style>
+
+    <!-- Completed Metric -->
+
+    <Style
+        x:Key="CompletedMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource LowPriorityColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION CARD CONTENT                                    -->
+    <!-- ========================================================= -->
+
+    <!-- Inspection Title -->
+
+    <Style
+        x:Key="InspectionTitleLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionTitleSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Start" />
+
+    </Style>
+
+    <!-- Inspection Details -->
+
+    <Style
+        x:Key="InspectionDetailLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Priority Tag -->
+
+    <Style
+        x:Key="PriorityTagStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource TagShape}" />
+
+    </Style>
+
+    <!-- Priority Tag Label -->
+
+    <Style
+        x:Key="PriorityTagLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SurfaceColor}" />
+
+    </Style>
+
+    <!-- Status Tag -->
+
+    <Style
+        x:Key="StatusTagStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource TagShape}" />
+
+    </Style>
+
+    <!-- Pending Status Label -->
+
+    <Style
+        x:Key="PendingStatusLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PendingStatusTextColor}" />
+
+    </Style>
+
+    <!-- In Progress Status Label -->
+
+    <Style
+        x:Key="InProgressStatusLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource InProgressStatusTextColor}" />
+
+    </Style>
+
+    <!-- Completed Status Label -->
+
+    <Style
+        x:Key="CompletedStatusLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource CompletedStatusTextColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTOR PROFILE STYLES                                  -->
+    <!-- ========================================================= -->
+
+    <!-- Profile Field Label -->
+
+    <Style
+        x:Key="ProfileFieldLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- Profile Field Value -->
+
+    <Style
+        x:Key="ProfileFieldValueStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD HEADER                                          -->
+    <!-- ========================================================= -->
+
+    <!-- Dashboard Header Title -->
+
+    <Style
+        x:Key="DashboardHeaderTitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource PageTitleStyle}">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+    </Style>
+
+    <!-- Dashboard Subtitle -->
+
+    <Style
+        x:Key="DashboardSubtitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource SecondaryTextStyle}">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardSubtitleSize}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD PROFILE BUTTON                                  -->
+    <!-- ========================================================= -->
+
+    <Style
+        x:Key="DashboardProfileButtonStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource SurfaceColor}" />
+
+        <Setter
+            Property="Stroke"
+            Value="{StaticResource BorderColor}" />
+
+        <Setter
+            Property="StrokeThickness"
+            Value="{StaticResource BorderThickness}" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource DashboardProfilePadding}" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource TagShape}" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- Dashboard Profile Button Label -->
+
+    <Style
+        x:Key="DashboardProfileButtonLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardSubtitleSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource AccentColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD SUMMARY CARDS                                   -->
+    <!-- ========================================================= -->
+
+    <!-- Summary Card -->
+
+    <Style
+        x:Key="DashboardSummaryCardStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardCardStyle}">
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource DashboardCardPadding}" />
+
+    </Style>
+
+    <!-- Summary Card Content -->
+
+    <Style
+        x:Key="DashboardSummaryCardContentStyle"
+        TargetType="VerticalStackLayout">
+
+        <Setter
+            Property="Spacing"
+            Value="{StaticResource DashboardCardSpacing}" />
+
+    </Style>
+
+    <!-- Summary Title -->
+
+    <Style
+        x:Key="DashboardSummaryTitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardCardHeadingStyle}">
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardCardTitleSize}" />
+
+    </Style>
+
+    <!-- Summary Metric -->
+
+    <Style
+        x:Key="DashboardSummaryMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardMetricStyle}">
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardMetricSize}" />
+
+    </Style>
+
+    <!-- Total Metric -->
+
+    <Style
+        x:Key="DashboardTotalMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardSummaryMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+    </Style>
+
+    <!-- Pending Metric -->
+
+    <Style
+        x:Key="DashboardPendingMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardSummaryMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource MediumPriorityColor}" />
+
+    </Style>
+
+    <!-- In Progress Metric -->
+
+    <Style
+        x:Key="DashboardInProgressMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardSummaryMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DashboardInProgressColor}" />
+
+    </Style>
+
+    <!-- Completed Metric -->
+
+    <Style
+        x:Key="DashboardCompletedMetricStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardSummaryMetricStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource LowPriorityColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD METRIC INDICATORS                               -->
+    <!-- ========================================================= -->
+
+    <!-- Base Indicator -->
+
+    <Style
+        x:Key="DashboardIndicatorStyle"
+        TargetType="BoxView">
+
+        <Setter
+            Property="HeightRequest"
+            Value="{StaticResource DashboardIndicatorHeight}" />
+
+        <Setter
+            Property="WidthRequest"
+            Value="{StaticResource DashboardIndicatorWidth}" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="Start" />
+
+    </Style>
+
+    <!-- Total Indicator -->
+
+    <Style
+        x:Key="DashboardTotalIndicatorStyle"
+        TargetType="BoxView"
+        BasedOn="{StaticResource DashboardIndicatorStyle}">
+
+        <Setter
+            Property="Color"
+            Value="{StaticResource DashboardTotalColor}" />
+
+    </Style>
+
+    <!-- Pending Indicator -->
+
+    <Style
+        x:Key="DashboardPendingIndicatorStyle"
+        TargetType="BoxView"
+        BasedOn="{StaticResource DashboardIndicatorStyle}">
+
+        <Setter
+            Property="Color"
+            Value="{StaticResource MediumPriorityColor}" />
+
+    </Style>
+
+    <!-- In Progress Indicator -->
+
+    <Style
+        x:Key="DashboardInProgressIndicatorStyle"
+        TargetType="BoxView"
+        BasedOn="{StaticResource DashboardIndicatorStyle}">
+
+        <Setter
+            Property="Color"
+            Value="{StaticResource DashboardInProgressColor}" />
+
+    </Style>
+
+    <!-- Completed Indicator -->
+
+    <Style
+        x:Key="DashboardCompletedIndicatorStyle"
+        TargetType="BoxView"
+        BasedOn="{StaticResource DashboardIndicatorStyle}">
+
+        <Setter
+            Property="Color"
+            Value="{StaticResource LowPriorityColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD SECTION HEADINGS                                -->
+    <!-- ========================================================= -->
+
+    <!-- Section Title -->
+
+    <Style
+        x:Key="DashboardSectionTitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource SectionTitleStyle}">
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardSectionTitleSize}" />
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+    </Style>
+
+    <!-- Section Subtitle -->
+
+    <Style
+        x:Key="DashboardSectionSubtitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardSubtitleStyle}" />
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD PRIORITY OVERVIEW                               -->
+    <!-- ========================================================= -->
+
+    <!-- Priority Tag -->
+
+    <Style
+        x:Key="DashboardPriorityTagStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource DashboardPriorityPadding}" />
+
+        <Setter
+            Property="Margin"
+            Value="{StaticResource DashboardPriorityMargin}" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource DashboardPriorityTagShape}" />
+
+    </Style>
+
+    <!-- Priority Label -->
+
+    <Style
+        x:Key="DashboardPriorityLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardPriorityFontSize}" />
+
+    </Style>
+
+    <!-- High Priority Tag -->
+
+    <Style
+        x:Key="DashboardHighPriorityTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardPriorityTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource HighPriorityBackgroundColor}" />
+
+    </Style>
+
+    <!-- Medium Priority Tag -->
+
+    <Style
+        x:Key="DashboardMediumPriorityTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardPriorityTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource PendingStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- Low Priority Tag -->
+
+    <Style
+        x:Key="DashboardLowPriorityTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardPriorityTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CompletedStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- High Priority Label -->
+
+    <Style
+        x:Key="DashboardHighPriorityLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardPriorityLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource HighPriorityTextColor}" />
+
+    </Style>
+
+    <!-- Medium Priority Label -->
+
+    <Style
+        x:Key="DashboardMediumPriorityLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardPriorityLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PendingStatusTextColor}" />
+
+    </Style>
+
+    <!-- Low Priority Label -->
+
+    <Style
+        x:Key="DashboardLowPriorityLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardPriorityLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource CompletedStatusTextColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD VIEW ALL                                        -->
+    <!-- ========================================================= -->
+
+    <!-- View All Container -->
+
+    <Style
+        x:Key="DashboardViewAllStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource DashboardViewAllBackgroundColor}" />
+
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource DashboardViewAllPadding}" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource DashboardViewAllShape}" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- View All Label -->
+
+    <Style
+        x:Key="DashboardViewAllLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardViewAllFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource AccentColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD INSPECTION CARDS                                -->
+    <!-- ========================================================= -->
+
+    <!-- Dashboard Inspection Card -->
+
+    <Style
+        x:Key="DashboardInspectionCardStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource InspectionCardStyle}">
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource DashboardInspectionPadding}" />
+
+    </Style>
+
+    <!-- Inspection Content -->
+
+    <Style
+        x:Key="DashboardInspectionContentStyle"
+        TargetType="VerticalStackLayout">
+
+        <Setter
+            Property="Spacing"
+            Value="{StaticResource DashboardInspectionSpacing}" />
+
+    </Style>
+
+    <!-- Inspection Title -->
+
+    <Style
+        x:Key="DashboardInspectionTitleStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource InspectionTitleLabelStyle}">
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardInspectionTitleSize}" />
+
+    </Style>
+
+    <!-- Inspection Details -->
+
+    <Style
+        x:Key="DashboardInspectionDetailStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource InspectionDetailLabelStyle}">
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardInspectionDetailSize}" />
+
+    </Style>
+
+    <!-- Inspection Time -->
+
+    <Style
+        x:Key="DashboardInspectionTimeStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardInspectionTimeSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DashboardTimeTextColor}" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD INSPECTION TAGS                                 -->
+    <!-- ========================================================= -->
+
+    <!-- Inspection Tag -->
+
+    <Style
+        x:Key="DashboardInspectionTagStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource DashboardInspectionTagPadding}" />
+
+        <Setter
+            Property="Margin"
+            Value="{StaticResource DashboardInspectionTagMargin}" />
+
+        <Setter
+            Property="StrokeShape"
+            Value="{StaticResource DashboardInspectionTagShape}" />
+
+    </Style>
+
+    <!-- Inspection Tag Label -->
+
+    <Style
+        x:Key="DashboardInspectionTagLabelStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource DashboardInspectionTagFontSize}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD INSPECTION PRIORITY TAGS                        -->
+    <!-- ========================================================= -->
+
+    <!-- High Priority -->
+
+    <Style
+        x:Key="DashboardInspectionHighTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardInspectionTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource HighPriorityBackgroundColor}" />
+
+    </Style>
+
+    <!-- Medium Priority -->
+
+    <Style
+        x:Key="DashboardInspectionMediumTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardInspectionTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource PendingStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- Low Priority -->
+
+    <Style
+        x:Key="DashboardInspectionLowTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardInspectionTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CompletedStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- High Priority Text -->
+
+    <Style
+        x:Key="DashboardInspectionHighTagLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardInspectionTagLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource HighPriorityTextColor}" />
+
+    </Style>
+
+    <!-- Medium Priority Text -->
+
+    <Style
+        x:Key="DashboardInspectionMediumTagLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardInspectionTagLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PendingStatusTextColor}" />
+
+    </Style>
+
+    <!-- Low Priority Text -->
+
+    <Style
+        x:Key="DashboardInspectionLowTagLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardInspectionTagLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource CompletedStatusTextColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- DASHBOARD INSPECTION STATUS TAGS                           -->
+    <!-- ========================================================= -->
+
+    <!-- Pending -->
+
+    <Style
+        x:Key="DashboardPendingStatusTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardInspectionTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource PendingStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- In Progress -->
+
+    <Style
+        x:Key="DashboardInProgressStatusTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardInspectionTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource InProgressStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- Completed -->
+
+    <Style
+        x:Key="DashboardCompletedStatusTagStyle"
+        TargetType="Border"
+        BasedOn="{StaticResource DashboardInspectionTagStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource CompletedStatusBackgroundColor}" />
+
+    </Style>
+
+    <!-- Pending Text -->
+
+    <Style
+        x:Key="DashboardPendingStatusTagLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardInspectionTagLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PendingStatusTextColor}" />
+
+    </Style>
+
+    <!-- In Progress Text -->
+
+    <Style
+        x:Key="DashboardInProgressStatusTagLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardInspectionTagLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource InProgressStatusTextColor}" />
+
+    </Style>
+
+    <!-- Completed Text -->
+
+    <Style
+        x:Key="DashboardCompletedStatusTagLabelStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource DashboardInspectionTagLabelStyle}">
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource CompletedStatusTextColor}" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION LIST PAGE                                      -->
+    <!-- ========================================================= -->
+
+    <!-- Inspection List Header -->
+
+    <Style
+        x:Key="InspectionListHeaderStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListHeaderSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+    </Style>
+
+    <!-- Inspection List Card -->
+
+    <Style
+    x:Key="InspectionListCardStyle"
+    TargetType="Border">
+
+        <Setter
+        Property="Padding"
+        Value="{StaticResource InspectionListCardPadding}" />
+
+        <Setter
+        Property="Margin"
+        Value="{StaticResource InspectionListCardMargin}" />
+
+        <Setter
+        Property="Stroke"
+        Value="{StaticResource InspectionListCardBorderColor}" />
+
+        <Setter
+        Property="StrokeThickness"
+        Value="{StaticResource InspectionListCardBorderThickness}" />
+
+        <Setter
+        Property="BackgroundColor"
+        Value="{StaticResource InspectionListCardBackgroundColor}" />
+
+        <Setter
+        Property="StrokeShape"
+        Value="RoundRectangle 12" />
+
+        <Style.Triggers>
+
+            <!-- Selected inspection -->
+            <DataTrigger
+            TargetType="Border"
+            Binding="{Binding IsSelected}"
+            Value="True">
+
+                <Setter
+                Property="BackgroundColor"
+                Value="{StaticResource InspectionListSelectedBackgroundColor}" />
+
+                <Setter
+                Property="Stroke"
+                Value="{StaticResource InspectionListSelectedBorderColor}" />
+
+                <Setter
+                Property="StrokeThickness"
+                Value="{StaticResource InspectionListSelectedBorderThickness}" />
+
+            </DataTrigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <Style
+    x:Key="InspectionListViewCardStyle"
+    TargetType="Border"
+    BasedOn="{StaticResource InspectionListCardStyle}">
+
+        <Setter
+        Property="Margin"
+        Value="{StaticResource InspectionListViewCardMargin}" />
+
+    </Style>
+
+    <!-- Inspection List Title -->
+
+    <Style
+        x:Key="InspectionListTitleStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListTitleSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- Inspection List Metadata -->
+
+    <Style
+        x:Key="InspectionListMetaStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListMetaSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Inspection List Metadata (Alternate Key) -->
+
+    <Style
+        x:Key="InspectionListMetadataStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListMetaSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+    </Style>
+
+    <!-- Empty List -->
+
+    <Style
+        x:Key="InspectionListEmptyStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource BodyFontSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource SecondaryTextColor}" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="Center" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION LIST STATUS BADGE                               -->
+    <!-- ========================================================= -->
+
+    <Style
+        x:Key="InspectionListStatusBadgeStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource PendingInspectionBackgroundColor}" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource InspectionListStatusPadding}" />
+
+        <Setter
+            Property="StrokeThickness"
+            Value="{StaticResource InspectionStatusBadgeStrokeThickness}" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="End" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+        <Setter
+            Property="StrokeShape">
+
+            <Setter.Value>
+
+                <RoundRectangle
+                    CornerRadius="{StaticResource InspectionListStatusCornerRadius}" />
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Style.Triggers>
+
+            <DataTrigger
+                TargetType="Border"
+                Binding="{Binding Status}"
+                Value="In Progress">
+
+                <Setter
+                    Property="BackgroundColor"
+                    Value="{StaticResource InProgressInspectionBackgroundColor}" />
+
+            </DataTrigger>
+
+            <DataTrigger
+                TargetType="Border"
+                Binding="{Binding Status}"
+                Value="Completed">
+
+                <Setter
+                    Property="BackgroundColor"
+                    Value="{StaticResource CompletedInspectionBackgroundColor}" />
+
+            </DataTrigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION LIST STATUS TEXT                                -->
+    <!-- ========================================================= -->
+
+    <Style
+        x:Key="InspectionListStatusTextStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListMetaSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PrimaryTextColor}" />
+
+        <Style.Triggers>
+
+            <DataTrigger
+                TargetType="Label"
+                Binding="{Binding Status}"
+                Value="Pending">
+
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource PendingInspectionColor}" />
+
+            </DataTrigger>
+
+            <DataTrigger
+                TargetType="Label"
+                Binding="{Binding Status}"
+                Value="In Progress">
+
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource InProgressInspectionColor}" />
+
+            </DataTrigger>
+
+            <DataTrigger
+                TargetType="Label"
+                Binding="{Binding Status}"
+                Value="Completed">
+
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource CompletedInspectionColor}" />
+
+            </DataTrigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION STATUS BADGE (SHARED)                           -->
+    <!-- ========================================================= -->
+    <!-- Inspection List Status Text -->
+
+    <Style
+        x:Key="InspectionStatusBadgeStyle"
+        TargetType="Border">
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource InspectionListStatusPadding}" />
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource PendingInspectionBackgroundColor}" />
+
+        <Setter
+            Property="StrokeThickness"
+            Value="0" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="End" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+
+        <Setter
+            Property="StrokeShape">
+
+            <Setter.Value>
+
+                <RoundRectangle
+                    CornerRadius="{StaticResource InspectionListStatusCornerRadius}" />
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Style.Triggers>
+
+            <DataTrigger
+                TargetType="Border"
+                Binding="{Binding Status}"
+                Value="In Progress">
+
+                <Setter
+                    Property="BackgroundColor"
+                    Value="{StaticResource InProgressInspectionBackgroundColor}" />
+
+            </DataTrigger>
+
+            <DataTrigger
+                TargetType="Border"
+                Binding="{Binding Status}"
+                Value="Completed">
+
+                <Setter
+                    Property="BackgroundColor"
+                    Value="{StaticResource CompletedInspectionBackgroundColor}" />
+
+            </DataTrigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!-- Inspection Status Text -->
+
+    <Style
+        x:Key="InspectionStatusTextStyle"
+        TargetType="Label">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListMetaSize}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource PendingInspectionColor}" />
+
+        <Style.Triggers>
+
+            <DataTrigger
+                TargetType="Label"
+                Binding="{Binding Status}"
+                Value="In Progress">
+
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource InProgressInspectionColor}" />
+
+            </DataTrigger>
+
+            <DataTrigger
+                TargetType="Label"
+                Binding="{Binding Status}"
+                Value="Completed">
+
+                <Setter
+                    Property="TextColor"
+                    Value="{StaticResource CompletedInspectionColor}" />
+
+            </DataTrigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <!-- ========================================================= -->
+    <!-- INSPECTION VIEW TOGGLE                                    -->
+    <!-- ========================================================= -->
+
+    <!-- Base Toggle Button -->
+
+    <Style
+        x:Key="InspectionViewToggleButtonStyle"
+        TargetType="Button">
+
+        <Setter
+            Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource InspectionListMetaSize}" />
+
+        <Setter
+            Property="Padding"
+            Value="{StaticResource InspectionViewTogglePadding}" />
+
+        <Setter
+            Property="CornerRadius"
+            Value="{StaticResource InspectionListStatusCornerRadius}" />
+
+        <Setter
+            Property="BorderWidth"
+            Value="{StaticResource BorderThickness}" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="Fill" />
+
+    </Style>
+
+    <!-- Selected Toggle Button -->
+
+    <Style
+        x:Key="InspectionViewSelectedButtonStyle"
+        TargetType="Button"
+        BasedOn="{StaticResource InspectionViewToggleButtonStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource InspectionViewSelectedBackgroundColor}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource InspectionViewSelectedTextColor}" />
+
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource InspectionViewSelectedBackgroundColor}" />
+
+    </Style>
+
+    <!-- Unselected Toggle Button -->
+
+    <Style
+        x:Key="InspectionViewUnselectedButtonStyle"
+        TargetType="Button"
+        BasedOn="{StaticResource InspectionViewToggleButtonStyle}">
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource InspectionViewUnselectedBackgroundColor}" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource InspectionViewUnselectedTextColor}" />
+
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
 
     </Style>
 

@@ -7,20 +7,18 @@
             InitializeComponent();
         }
 
-        private async void OnOpenCollectionViewClicked(
+        private async void OnViewAllInspectionsClicked(
             object sender,
-            EventArgs e)
+            TappedEventArgs e)
         {
-            await Shell.Current.GoToAsync(
-                nameof(InspectionListPage));
+            await Shell.Current.GoToAsync(nameof(InspectionListPage));
         }
 
-        private async void OnOpenListViewClicked(
+        private async void OnOpenProfileClicked(
             object sender,
-            EventArgs e)
+            TappedEventArgs e)
         {
-            await Shell.Current.GoToAsync(
-                nameof(InspectionListListViewPage));
+            await Shell.Current.GoToAsync(nameof(InspectorProfilePage));
         }
     }
 }

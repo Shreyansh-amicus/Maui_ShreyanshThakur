@@ -42,4 +42,44 @@
     <Color x:Key="CompletedInspectionColor">#047857</Color>
     <Color x:Key="CompletedInspectionBackgroundColor">#D1FAE5</Color>
 
+    <Color x:Key="TransparentColor">#00000000</Color>
+
+    <!-- Dashboard specific colours -->
+
+    <!-- Total inspection indicator -->
+    <Color x:Key="DashboardTotalColor">
+        #2563EB
+    </Color>
+
+    <!-- In Progress dashboard metric -->
+    <Color x:Key="DashboardInProgressColor">
+        #7C3AED
+    </Color>
+
+    <!-- High priority background -->
+    <Color x:Key="HighPriorityBackgroundColor">
+        #FEE2E2
+    </Color>
+
+    <!-- High priority text -->
+    <Color x:Key="HighPriorityTextColor">
+        #B91C1C
+    </Color>
+
+    <!-- Dashboard View All background -->
+    <Color x:Key="DashboardViewAllBackgroundColor">
+        #EFF6FF
+    </Color>
+
+    <!-- Dashboard time text -->
+    <Color x:Key="DashboardTimeTextColor">
+        #475569
+    </Color>
+
+    <!-- Inspection View Toggle -->
+    <Color x:Key="InspectionViewSelectedBackgroundColor">#2563EB</Color>
+    <Color x:Key="InspectionViewSelectedTextColor">#FFFFFF</Color>
+    <Color x:Key="InspectionViewUnselectedBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="InspectionViewUnselectedTextColor">#64748B</Color>
+
 </ResourceDictionary>

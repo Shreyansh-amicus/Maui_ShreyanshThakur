@@ -53,8 +53,7 @@
                         StrokeThickness="{StaticResource AvatarBorderThickness}">
 
                         <Border.StrokeShape>
-                            <RoundRectangle
-                                CornerRadius="{StaticResource CardCornerRadius}" />
+                            <Ellipse />
                         </Border.StrokeShape>
 
                         <Image
@@ -110,12 +109,12 @@
                         <Label
                             Text="Employee ID"
                             WidthRequest="{StaticResource FieldLabelWidth}"
-                            Style="{StaticResource SecondaryTextStyle}" />
+                            Style="{StaticResource ProfileFieldLabelStyle}" />
 
                         <Label
                             Text="INS-2024-001"
                             HorizontalOptions="FillAndExpand"
-                            FontAttributes="Bold" />
+                            Style="{StaticResource ProfileFieldValueStyle}" />
 
                     </HorizontalStackLayout>
 
@@ -130,12 +129,12 @@
                         <Label
                             Text="Role"
                             WidthRequest="{StaticResource FieldLabelWidth}"
-                            Style="{StaticResource SecondaryTextStyle}" />
+                            Style="{StaticResource ProfileFieldLabelStyle}" />
 
                         <Label
                             Text="Senior Inspector"
                             HorizontalOptions="FillAndExpand"
-                            FontAttributes="Bold" />
+                            Style="{StaticResource ProfileFieldValueStyle}" />
 
                     </HorizontalStackLayout>
 
@@ -150,13 +149,13 @@
                         <Label
                             Text="Email"
                             WidthRequest="{StaticResource FieldLabelWidth}"
-                            Style="{StaticResource SecondaryTextStyle}" />
+                            Style="{StaticResource ProfileFieldLabelStyle}" />
 
                         <Label
                             Text="shreyansh.thakur@example.com"
                             HorizontalOptions="FillAndExpand"
                             LineBreakMode="WordWrap"
-                            FontAttributes="Bold" />
+                            Style="{StaticResource ProfileFieldValueStyle}" />
 
                     </HorizontalStackLayout>
 
@@ -171,12 +170,12 @@
                         <Label
                             Text="Phone"
                             WidthRequest="{StaticResource FieldLabelWidth}"
-                            Style="{StaticResource SecondaryTextStyle}" />
+                            Style="{StaticResource ProfileFieldLabelStyle}" />
 
                         <Label
                             Text="+91 98765 43210"
                             HorizontalOptions="FillAndExpand"
-                            FontAttributes="Bold" />
+                            Style="{StaticResource ProfileFieldValueStyle}" />
 
                     </HorizontalStackLayout>
 

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,386 +9,443 @@
     SafeAreaEdges="All">
 
     <ScrollView>
+
         <VerticalStackLayout
-            Padding="{StaticResource PagePadding}"
-            Spacing="{StaticResource SectionSpacing}">
+            Padding="{StaticResource DashboardPagePadding}"
+            Spacing="{StaticResource DashboardPageSpacing}">
 
-            <!-- Page Heading -->
-            <!-- Inspection List Navigation -->
-            <VerticalStackLayout
-    Spacing="{StaticResource ItemSpacing}">
+            <!-- ================= HEADER ================= -->
 
-                <Label
-        Text="ListView Comparison"
-        Style="{StaticResource SectionTitleStyle}" />
+            <Grid ColumnDefinitions="*,Auto">
 
-                <Button
-        Text="Open CollectionView"
-        Style="{StaticResource PrimaryButtonStyle}"
-        Clicked="OnOpenCollectionViewClicked" />
+                <VerticalStackLayout
+                    Spacing="{StaticResource DashboardHeaderSpacing}"
+                    VerticalOptions="Center">
 
-                <Button
-        Text="Open ListView"
-        Style="{StaticResource PrimaryButtonStyle}"
-        Clicked="OnOpenListViewClicked" />
+                    <Label
+                        Text="Dashboard"
+                        Style="{StaticResource DashboardHeaderTitleStyle}" />
 
-            </VerticalStackLayout>
+                    <Label
+                        Text="Overview of your inspections"
+                        Style="{StaticResource DashboardSubtitleStyle}" />
 
-            <!-- Summary Cards -->
-            <Grid
-                RowDefinitions="Auto,Auto"
-                ColumnDefinitions="*,*"
-                RowSpacing="{StaticResource RowSpacing}"
-                ColumnSpacing="{StaticResource RowSpacing}">
+                </VerticalStackLayout>
 
-                <!-- Total -->
                 <Border
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
-
-                    <VerticalStackLayout Spacing="{StaticResource SmallSpacing}">
-                        <Label
-                            Text="Total"
-                            FontSize="{StaticResource DashboardCardTitleSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-
-                        <Label
-                            Text="24"
-                            FontSize="{StaticResource DashboardMetricSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource PrimaryTextColor}" />
-
-                        <Label
-                            Text="All inspections"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Pending -->
-                <Border
-                    Grid.Row="0"
                     Grid.Column="1"
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
+                    Style="{StaticResource DashboardProfileButtonStyle}">
 
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnOpenProfileClicked" />
+                    </Border.GestureRecognizers>
 
-                    <VerticalStackLayout Spacing="{StaticResource SmallSpacing}">
-                        <Label
-                            Text="Pending"
-                            FontSize="{StaticResource DashboardCardTitleSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
+                    <Label
+                        Text="Profile"
+                        Style="{StaticResource DashboardProfileButtonLabelStyle}" />
 
-                        <Label
-                            Text="8"
-                            FontSize="{StaticResource DashboardMetricSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource HighPriorityColor}" />
-
-                        <Label
-                            Text="Awaiting start"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- In Progress -->
-                <Border
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
-
-                    <VerticalStackLayout Spacing="{StaticResource SmallSpacing}">
-                        <Label
-                            Text="In Progress"
-                            FontSize="{StaticResource DashboardCardTitleSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-
-                        <Label
-                            Text="10"
-                            FontSize="{StaticResource DashboardMetricSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource AccentColor}" />
-
-                        <Label
-                            Text="Currently active"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Completed -->
-                <Border
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
-
-                    <VerticalStackLayout Spacing="{StaticResource SmallSpacing}">
-                        <Label
-                            Text="Completed"
-                            FontSize="{StaticResource DashboardCardTitleSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-
-                        <Label
-                            Text="6"
-                            FontSize="{StaticResource DashboardMetricSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource LowPriorityColor}" />
-
-                        <Label
-                            Text="Successfully finished"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-                    </VerticalStackLayout>
                 </Border>
 
             </Grid>
 
-            <!-- Inspection Priorities -->
-            <VerticalStackLayout Spacing="{StaticResource ItemSpacing}">
+
+            <!-- ================= SUMMARY CARDS ================= -->
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="{StaticResource DashboardGridSpacing}"
+                RowSpacing="{StaticResource DashboardGridSpacing}">
+
+                <!-- Total -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
+
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
+
+                        <Label
+                            Text="Total Inspections"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />
+
+                        <Label
+                            Text="24"
+                            Style="{StaticResource DashboardTotalMetricStyle}" />
+
+                        <BoxView
+                            Style="{StaticResource DashboardTotalIndicatorStyle}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+
+                <!-- Pending -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
+
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
+
+                        <Label
+                            Text="Pending"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />
+
+                        <Label
+                            Text="8"
+                            Style="{StaticResource DashboardPendingMetricStyle}" />
+
+                        <BoxView
+                            Style="{StaticResource DashboardPendingIndicatorStyle}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+
+                <!-- In Progress -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
+
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
+
+                        <Label
+                            Text="In Progress"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />
+
+                        <Label
+                            Text="10"
+                            Style="{StaticResource DashboardInProgressMetricStyle}" />
+
+                        <BoxView
+                            Style="{StaticResource DashboardInProgressIndicatorStyle}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+
+                <!-- Completed -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
+
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
+
+                        <Label
+                            Text="Completed"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />
+
+                        <Label
+                            Text="6"
+                            Style="{StaticResource DashboardCompletedMetricStyle}" />
+
+                        <BoxView
+                            Style="{StaticResource DashboardCompletedIndicatorStyle}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </Grid>
+
+
+            <!-- ================= PRIORITY OVERVIEW ================= -->
+
+            <VerticalStackLayout
+                Spacing="{StaticResource DashboardSectionSpacing}">
 
                 <Label
-                    Text="Inspection Priorities"
-                    Style="{StaticResource SectionTitleStyle}" />
+                    Text="Priority Overview"
+                    Style="{StaticResource DashboardSectionTitleStyle}" />
 
                 <FlexLayout
                     Direction="Row"
                     Wrap="Wrap"
-                    JustifyContent="Start"
-                    AlignItems="Center">
+                    AlignItems="Start">
+
+                    <!-- High -->
 
                     <Border
-                        BackgroundColor="{StaticResource HighPriorityColor}"
-                        Padding="{StaticResource PriorityTagPadding}"
-                        Margin="{StaticResource PriorityTagMargin}">
-
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="{StaticResource ButtonCornerRadius}" />
-                        </Border.StrokeShape>
+                        Style="{StaticResource DashboardHighPriorityTagStyle}">
 
                         <Label
                             Text="High"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SurfaceColor}" />
+                            Style="{StaticResource DashboardHighPriorityLabelStyle}" />
+
                     </Border>
 
-                    <Border
-                        BackgroundColor="{StaticResource MediumPriorityColor}"
-                        Padding="{StaticResource PriorityTagPadding}"
-                        Margin="{StaticResource PriorityTagMargin}">
 
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="{StaticResource ButtonCornerRadius}" />
-                        </Border.StrokeShape>
+                    <!-- Medium -->
+
+                    <Border
+                        Style="{StaticResource DashboardMediumPriorityTagStyle}">
 
                         <Label
                             Text="Medium"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SurfaceColor}" />
+                            Style="{StaticResource DashboardMediumPriorityLabelStyle}" />
+
                     </Border>
 
-                    <Border
-                        BackgroundColor="{StaticResource LowPriorityColor}"
-                        Padding="{StaticResource PriorityTagPadding}"
-                        Margin="{StaticResource PriorityTagMargin}">
 
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="{StaticResource ButtonCornerRadius}" />
-                        </Border.StrokeShape>
+                    <!-- Low -->
+
+                    <Border
+                        Style="{StaticResource DashboardLowPriorityTagStyle}">
 
                         <Label
                             Text="Low"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SurfaceColor}" />
+                            Style="{StaticResource DashboardLowPriorityLabelStyle}" />
+
                     </Border>
 
                 </FlexLayout>
+
             </VerticalStackLayout>
 
-            <!-- Today's Inspections -->
-            <VerticalStackLayout Spacing="{StaticResource ItemSpacing}">
 
-                <Label
-                    Text="Today's Inspections"
-                    Style="{StaticResource SectionTitleStyle}" />
+            <!-- ================= TODAY'S INSPECTIONS ================= -->
 
-                <!-- Inspection 1 -->
-                <Border
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
+            <VerticalStackLayout
+                Spacing="{StaticResource DashboardInspectionSpacing}">
 
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
+                <!-- Section Header -->
 
-                    <VerticalStackLayout Spacing="{StaticResource InspectionCardSpacing}">
+                <Grid ColumnDefinitions="*,Auto">
+
+                    <VerticalStackLayout
+                        Spacing="{StaticResource DashboardHeaderSpacing}">
 
                         <Label
-                            Text="Equipment Safety Inspection"
-                            FontSize="{StaticResource InspectionTitleSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource PrimaryTextColor}"
-                            HorizontalTextAlignment="Start" />
+                            Text="Today's Inspections"
+                            Style="{StaticResource DashboardSectionTitleStyle}" />
 
                         <Label
-                            Text="Manufacturing Unit A"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-
-                        <Label
-                            Text="09:00 AM"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
-
-                        <Border
-                            BackgroundColor="{StaticResource PendingStatusBackgroundColor}"
-                            HorizontalOptions="Start"
-                            Padding="{StaticResource StatusTagPadding}">
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="{StaticResource ButtonCornerRadius}" />
-                            </Border.StrokeShape>
-
-                            <Label
-                                Text="Pending"
-                                FontSize="{StaticResource BodyFontSize}"
-                                FontAttributes="Bold"
-                                TextColor="{StaticResource PendingStatusTextColor}" />
-                        </Border>
+                            Text="Your scheduled tasks"
+                            Style="{StaticResource DashboardSectionSubtitleStyle}" />
 
                     </VerticalStackLayout>
+
+                    <!-- View All -->
+
+                    <Border
+                        Grid.Column="1"
+                        Style="{StaticResource DashboardViewAllStyle}">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnViewAllInspectionsClicked" />
+                        </Border.GestureRecognizers>
+
+                        <Label
+                            Text="View All →"
+                            Style="{StaticResource DashboardViewAllLabelStyle}" />
+
+                    </Border>
+
+                </Grid>
+
+
+                <!-- ================= INSPECTION 1 ================= -->
+
+                <Border
+                    Style="{StaticResource DashboardInspectionCardStyle}">
+
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardInspectionContentStyle}">
+
+                        <Grid ColumnDefinitions="*,Auto">
+
+                            <VerticalStackLayout
+                                Spacing="{StaticResource DashboardHeaderSpacing}">
+
+                                <Label
+                                    Text="Building Safety Inspection"
+                                    Style="{StaticResource DashboardInspectionTitleStyle}" />
+
+                                <Label
+                                    Text="Block A"
+                                    Style="{StaticResource DashboardInspectionDetailStyle}" />
+
+                            </VerticalStackLayout>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="9:00 AM"
+                                Style="{StaticResource DashboardInspectionTimeStyle}" />
+
+                        </Grid>
+
+
+                        <FlexLayout
+                            Direction="Row"
+                            Wrap="Wrap"
+                            AlignItems="Start">
+
+                            <Border
+                                Style="{StaticResource DashboardInspectionHighTagStyle}">
+
+                                <Label
+                                    Text="High Priority"
+                                    Style="{StaticResource DashboardInspectionHighTagLabelStyle}" />
+
+                            </Border>
+
+                            <Border
+                                Style="{StaticResource DashboardPendingStatusTagStyle}">
+
+                                <Label
+                                    Text="Pending"
+                                    Style="{StaticResource DashboardPendingStatusTagLabelStyle}" />
+
+                            </Border>
+
+                        </FlexLayout>
+
+                    </VerticalStackLayout>
+
                 </Border>
 
-                <!-- Inspection 2 -->
+
+                <!-- ================= INSPECTION 2 ================= -->
+
                 <Border
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
+                    Style="{StaticResource DashboardInspectionCardStyle}">
 
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardInspectionContentStyle}">
 
-                    <VerticalStackLayout Spacing="{StaticResource InspectionCardSpacing}">
+                        <Grid ColumnDefinitions="*,Auto">
 
-                        <Label
-                            Text="Fire Safety Inspection"
-                            FontSize="{StaticResource InspectionTitleSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource PrimaryTextColor}"
-                            HorizontalTextAlignment="Start" />
+                            <VerticalStackLayout
+                                Spacing="{StaticResource DashboardHeaderSpacing}">
 
-                        <Label
-                            Text="Office Building B"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
+                                <Label
+                                    Text="Equipment Inspection"
+                                    Style="{StaticResource DashboardInspectionTitleStyle}" />
 
-                        <Label
-                            Text="11:30 AM"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
+                                <Label
+                                    Text="Block B"
+                                    Style="{StaticResource DashboardInspectionDetailStyle}" />
 
-                        <Border
-                            BackgroundColor="{StaticResource InProgressStatusBackgroundColor}"
-                            HorizontalOptions="Start"
-                            Padding="{StaticResource StatusTagPadding}">
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="{StaticResource ButtonCornerRadius}" />
-                            </Border.StrokeShape>
+                            </VerticalStackLayout>
 
                             <Label
-                                Text="In Progress"
-                                FontSize="{StaticResource BodyFontSize}"
-                                FontAttributes="Bold"
-                                TextColor="{StaticResource InProgressStatusTextColor}" />
-                        </Border>
+                                Grid.Column="1"
+                                Text="11:00 AM"
+                                Style="{StaticResource DashboardInspectionTimeStyle}" />
+
+                        </Grid>
+
+
+                        <FlexLayout
+                            Direction="Row"
+                            Wrap="Wrap"
+                            AlignItems="Start">
+
+                            <Border
+                                Style="{StaticResource DashboardInspectionMediumTagStyle}">
+
+                                <Label
+                                    Text="Medium Priority"
+                                    Style="{StaticResource DashboardInspectionMediumTagLabelStyle}" />
+
+                            </Border>
+
+                            <Border
+                                Style="{StaticResource DashboardInProgressStatusTagStyle}">
+
+                                <Label
+                                    Text="In Progress"
+                                    Style="{StaticResource DashboardInProgressStatusTagLabelStyle}" />
+
+                            </Border>
+
+                        </FlexLayout>
 
                     </VerticalStackLayout>
+
                 </Border>
 
-                <!-- Inspection 3 -->
+
+                <!-- ================= INSPECTION 3 ================= -->
+
                 <Border
-                    BackgroundColor="{StaticResource SurfaceColor}"
-                    Stroke="{StaticResource BorderColor}"
-                    StrokeThickness="{StaticResource BorderThickness}"
-                    Padding="{StaticResource CardPadding}">
+                    Style="{StaticResource DashboardInspectionCardStyle}">
 
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
-                    </Border.StrokeShape>
+                    <VerticalStackLayout
+                        Style="{StaticResource DashboardInspectionContentStyle}">
 
-                    <VerticalStackLayout Spacing="{StaticResource InspectionCardSpacing}">
+                        <Grid ColumnDefinitions="*,Auto">
 
-                        <Label
-                            Text="Warehouse Quality Inspection"
-                            FontSize="{StaticResource InspectionTitleSize}"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource PrimaryTextColor}"
-                            HorizontalTextAlignment="Start" />
+                            <VerticalStackLayout
+                                Spacing="{StaticResource DashboardHeaderSpacing}">
 
-                        <Label
-                            Text="Warehouse C"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
+                                <Label
+                                    Text="Fire Safety Inspection"
+                                    Style="{StaticResource DashboardInspectionTitleStyle}" />
 
-                        <Label
-                            Text="02:00 PM"
-                            FontSize="{StaticResource BodyFontSize}"
-                            TextColor="{StaticResource SecondaryTextColor}" />
+                                <Label
+                                    Text="Block C"
+                                    Style="{StaticResource DashboardInspectionDetailStyle}" />
 
-                        <Border
-                            BackgroundColor="{StaticResource CompletedStatusBackgroundColor}"
-                            HorizontalOptions="Start"
-                            Padding="{StaticResource StatusTagPadding}">
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="{StaticResource ButtonCornerRadius}" />
-                            </Border.StrokeShape>
+                            </VerticalStackLayout>
 
                             <Label
-                                Text="Completed"
-                                FontSize="{StaticResource BodyFontSize}"
-                                FontAttributes="Bold"
-                                TextColor="{StaticResource CompletedStatusTextColor}" />
-                        </Border>
+                                Grid.Column="1"
+                                Text="2:00 PM"
+                                Style="{StaticResource DashboardInspectionTimeStyle}" />
+
+                        </Grid>
+
+
+                        <FlexLayout
+                            Direction="Row"
+                            Wrap="Wrap"
+                            AlignItems="Start">
+
+                            <Border
+                                Style="{StaticResource DashboardInspectionLowTagStyle}">
+
+                                <Label
+                                    Text="Low Priority"
+                                    Style="{StaticResource DashboardInspectionLowTagLabelStyle}" />
+
+                            </Border>
+
+                            <Border
+                                Style="{StaticResource DashboardCompletedStatusTagStyle}">
+
+                                <Label
+                                    Text="Completed"
+                                    Style="{StaticResource DashboardCompletedStatusTagLabelStyle}" />
+
+                            </Border>
+
+                        </FlexLayout>
 
                     </VerticalStackLayout>
+
                 </Border>
 
             </VerticalStackLayout>
 
         </VerticalStackLayout>
+
     </ScrollView>
 
 </ContentPage>

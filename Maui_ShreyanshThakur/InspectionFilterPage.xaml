@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Maui_ShreyanshThakur.InspectionFilterPage"
+    Title="Inspection Filters"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    SafeAreaEdges="All">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="{StaticResource PagePadding}"
+            Spacing="{StaticResource ItemSpacing}">
+
+            <!-- Page heading -->
+            <Label
+                Text="Filter Inspections"
+                Style="{StaticResource FilterPageTitleStyle}" />
+
+            <Label
+                Text="Use the options below to narrow down your inspections."
+                Style="{StaticResource FilterDescriptionStyle}" />
+
+            <!-- Entry control -->
+            <VerticalStackLayout
+                Spacing="{StaticResource SmallSpacing}">
+
+                <Label
+                    Text="Search by inspection name"
+                    Style="{StaticResource FilterFieldLabelStyle}" />
+
+                <Entry
+                    x:Name="SearchEntry"
+                    Placeholder="e.g. Fire Safety Inspection"
+                    ClearButtonVisibility="WhileEditing"
+                    Style="{StaticResource FilterInputStyle}" />
+
+            </VerticalStackLayout>
+
+            <!-- Picker control -->
+            <VerticalStackLayout
+                Spacing="{StaticResource SmallSpacing}">
+
+                <Label
+                    Text="Inspection Status"
+                    Style="{StaticResource FilterFieldLabelStyle}" />
+
+                <Picker
+                    x:Name="StatusPicker"
+                    Title="Select a status"
+                    Style="{StaticResource FilterPickerStyle}" />
+
+            </VerticalStackLayout>
+
+            <!-- DatePicker control -->
+            <VerticalStackLayout
+                Spacing="{StaticResource SmallSpacing}">
+
+                <Label
+                    Text="Scheduled Date"
+                    Style="{StaticResource FilterFieldLabelStyle}" />
+
+                <DatePicker
+                    x:Name="ScheduledDatePicker"
+                    Format="dd MMM yyyy"
+                    Style="{StaticResource FilterDatePickerStyle}" />
+
+            </VerticalStackLayout>
+
+            <!-- Switch control -->
+            <Border
+                BackgroundColor="{StaticResource SurfaceColor}"
+                Stroke="{StaticResource BorderColor}"
+                StrokeThickness="{StaticResource BorderThickness}"
+                Padding="{StaticResource CardPadding}"
+                StrokeShape="RoundRectangle 12">
+
+                <Grid
+                    ColumnDefinitions="*,Auto">
+
+                    <VerticalStackLayout
+                        Spacing="{StaticResource FilterControlSpacing}">
+
+                        <Label
+                            Text="Show completed inspections"
+                            Style="{StaticResource FilterFieldLabelStyle}" />
+
+                        <Label
+                            Text="Include completed records in results."
+                            Style="{StaticResource FilterHelperLabelStyle}" />
+
+                    </VerticalStackLayout>
+
+                    <Switch
+                        x:Name="ShowCompletedSwitch"
+                        Grid.Column="1"
+                        IsToggled="True"
+                        OnColor="{StaticResource AccentColor}"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- Apply filters button -->
+            <Button
+                Text="Apply Filters"
+                Style="{StaticResource PrimaryButtonStyle}"
+                Clicked="OnApplyFiltersClicked" />
+
+            <!-- Reset filters button -->
+            <Button
+                Text="Reset Filters"
+                Style="{StaticResource SecondaryButtonStyle}"
+                Clicked="OnResetFiltersClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

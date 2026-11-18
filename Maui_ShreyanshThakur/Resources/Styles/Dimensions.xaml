@@ -37,7 +37,6 @@
     <Thickness x:Key="PriorityTagPadding">8,5</Thickness>
 
     <x:Double x:Key="DashboardMetricSize">28</x:Double>
-    <x:Double x:Key="DashboardCardTitleSize">14</x:Double>
     <x:Double x:Key="InspectionTitleSize">16</x:Double>
     <x:Double x:Key="InspectionCardSpacing">8</x:Double>
 
@@ -56,5 +55,83 @@
 
     <CornerRadius x:Key="InspectionListCornerRadius">14</CornerRadius>
     <CornerRadius x:Key="InspectionListStatusCornerRadius">10</CornerRadius>
+
+    <x:Double x:Key="FilterControlSpacing">2</x:Double>
+    <Thickness x:Key="InspectionListItemMargin">0,0,0,12</Thickness>    
+    <Thickness x:Key="InspectionListCardMargin">0,0,0,12</Thickness>
+    <x:Double x:Key="InspectionListItemSpacing">20</x:Double>
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <!-- Header -->
+    <x:Double x:Key="DashboardHeaderSpacing">4</x:Double>
+    <Thickness x:Key="DashboardProfilePadding">14,9</Thickness>
+
+    <!-- Summary cards -->
+    <x:Double x:Key="DashboardGridSpacing">12</x:Double>
+    <x:Double x:Key="DashboardCardSpacing">8</x:Double>
+    <Thickness x:Key="DashboardCardPadding">16</Thickness>
+
+    <x:Double x:Key="DashboardCardTitleSize">12</x:Double>
+
+    <x:Double x:Key="DashboardIndicatorHeight">4</x:Double>
+    <x:Double x:Key="DashboardIndicatorWidth">36</x:Double>
+
+    <!-- Section headings -->
+    <x:Double x:Key="DashboardSectionSpacing">12</x:Double>
+    <x:Double x:Key="DashboardSectionTitleSize">17</x:Double>
+    <x:Double x:Key="DashboardSubtitleSize">12</x:Double>
+
+    <!-- Priority tags -->
+    <Thickness x:Key="DashboardPriorityPadding">12,7</Thickness>
+    <Thickness x:Key="DashboardPriorityMargin">0,0,8,8</Thickness>
+
+    <CornerRadius x:Key="DashboardPriorityCornerRadius">10</CornerRadius>
+
+    <x:Double x:Key="DashboardPriorityFontSize">12</x:Double>
+
+    <!-- View All -->
+    <Thickness x:Key="DashboardViewAllPadding">12,8</Thickness>
+    <CornerRadius x:Key="DashboardViewAllCornerRadius">10</CornerRadius>
+    <x:Double x:Key="DashboardViewAllFontSize">12</x:Double>
+
+    <!-- Inspection cards -->
+    <x:Double x:Key="DashboardInspectionSpacing">12</x:Double>
+    <Thickness x:Key="DashboardInspectionPadding">16</Thickness>
+
+    <x:Double x:Key="DashboardInspectionTitleSize">14</x:Double>
+    <x:Double x:Key="DashboardInspectionDetailSize">12</x:Double>
+    <x:Double x:Key="DashboardInspectionTimeSize">12</x:Double>
+
+    <!-- Inspection status and priority tags -->
+    <Thickness x:Key="DashboardInspectionTagPadding">10,5</Thickness>
+    <Thickness x:Key="DashboardInspectionTagMargin">0,0,8,0</Thickness>
+
+    <CornerRadius x:Key="DashboardInspectionTagCornerRadius">8</CornerRadius>
+
+    <x:Double x:Key="DashboardInspectionTagFontSize">11</x:Double>
+
+    <!-- Dashboard page layout -->
+    <Thickness x:Key="DashboardPagePadding">20</Thickness>
+    <x:Double x:Key="DashboardPageSpacing">24</x:Double>
+
+    <!-- Inspection View Toggle -->
+    <x:Double x:Key="InspectionViewToggleSpacing">8</x:Double>
+    <x:Double x:Key="InspectionViewToggleMarginTop">12</x:Double>
+
+    <Thickness x:Key="InspectionViewTogglePadding">12,8</Thickness>
+
+    <!-- Inspection List -->
+    <x:Double x:Key="InspectionListHeaderSpacing">5</x:Double>
+
+    <!-- Inspection View Toggle -->
+    <Thickness x:Key="InspectionViewToggleMargin">0,12,0,0</Thickness>
+
+    <!-- Inspection Status Badge -->
+    <x:Double x:Key="InspectionStatusBadgeStrokeThickness">0</x:Double>
+
+    <Thickness x:Key="InspectionListViewCardMargin">
+        0,0,0,12
+    </Thickness>
 
 </ResourceDictionary>

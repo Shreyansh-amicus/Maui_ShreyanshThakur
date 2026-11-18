@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,184 +8,252 @@
     BackgroundColor="{StaticResource PageBackgroundColor}"
     SafeAreaEdges="All">
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid
+        Padding="{StaticResource PagePadding}"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="{StaticResource InspectionListPageSpacing}">
 
         <!-- Page Header -->
         <VerticalStackLayout
             Grid.Row="0"
-            Padding="{StaticResource InspectionListPadding}"
-            Spacing="{StaticResource SmallSpacing}">
+            Spacing="{StaticResource InspectionListHeaderSpacing}">
 
             <Label
                 Text="Inspections"
-                FontSize="{StaticResource InspectionListHeaderSize}"
-                FontAttributes="Bold"
-                TextColor="{StaticResource PrimaryTextColor}" />
+                Style="{StaticResource PageTitleStyle}" />
 
             <Label
                 Text="View and manage scheduled inspections"
-                Style="{StaticResource SecondaryTextStyle}" />
+                Style="{StaticResource PageSubtitleStyle}" />
+
+            <Label
+                Text="{Binding InspectionCountText}"
+                Style="{StaticResource InspectionListCountStyle}" />
 
         </VerticalStackLayout>
 
-        <!-- Inspection Collection -->
-        <CollectionView
+        <!-- View Toggle -->
+        <Border
             Grid.Row="1"
-            x:Name="InspectionCollection"
-            ItemsSource="{Binding Inspections}"
-            SelectionMode="Single"
-            SelectionChanged="OnSelectionChanged"
-            Margin="{StaticResource InspectionListPadding}">
+            Style="{StaticResource InspectionViewToggleContainerStyle}">
 
-            <CollectionView.EmptyView>
-                <Label
-                    Text="No inspections available."
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    TextColor="{StaticResource SecondaryTextColor}" />
-            </CollectionView.EmptyView>
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="{StaticResource InspectionViewToggleSpacing}">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <Button
+                    x:Name="CollectionViewButton"
+                    Grid.Column="0"
+                    Text="Card View"
+                    Clicked="OnCollectionViewClicked"
+                    Style="{StaticResource InspectionViewSelectedButtonStyle}" />
 
-                    <Border
-                        BackgroundColor="{StaticResource SurfaceColor}"
-                        Stroke="{StaticResource BorderColor}"
-                        StrokeThickness="{StaticResource BorderThickness}"
-                        Padding="{StaticResource InspectionListCardPadding}"
-                        Margin="0,0,0,12">
+                <Button
+                    x:Name="ListViewButton"
+                    Grid.Column="1"
+                    Text="List View"
+                    Clicked="OnListViewClicked"
+                    Style="{StaticResource InspectionViewUnselectedButtonStyle}" />
 
-                        <Border.StrokeShape>
-                            <RoundRectangle
-                                CornerRadius="{StaticResource InspectionListCornerRadius}" />
-                        </Border.StrokeShape>
+            </Grid>
 
-                        <!-- Selected item visual state -->
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
+        </Border>
 
-                                <VisualState Name="Normal">
-                                    <VisualState.Setters>
-                                        <Setter
-                                            Property="BackgroundColor"
-                                            Value="{StaticResource SurfaceColor}" />
-                                        <Setter
-                                            Property="Stroke"
-                                            Value="{StaticResource BorderColor}" />
-                                    </VisualState.Setters>
-                                </VisualState>
+        <!-- Inspection Lists -->
+        <Grid Grid.Row="2">
 
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter
-                                            Property="BackgroundColor"
-                                            Value="{StaticResource SelectedInspectionBackgroundColor}" />
-                                        <Setter
-                                            Property="Stroke"
-                                            Value="{StaticResource AccentColor}" />
-                                    </VisualState.Setters>
-                                </VisualState>
+            <!-- CollectionView -->
+            <CollectionView
+                x:Name="InspectionCollection"
+                ItemsSource="{Binding Inspections}"
+                SelectionMode="Single"
+                SelectionChanged="OnSelectionChanged">
 
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="{StaticResource InspectionListItemSpacing}" />
+                </CollectionView.ItemsLayout>
 
-                        <Grid
-                            ColumnDefinitions="*,Auto"
-                            RowDefinitions="Auto,Auto,Auto"
-                            ColumnSpacing="{StaticResource InspectionListSpacing}"
-                            RowSpacing="{StaticResource InspectionListCardSpacing}">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="30"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Spacing="10">
 
-                            <!-- Inspection Title -->
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Title}"
-                                FontSize="{StaticResource InspectionListTitleSize}"
-                                FontAttributes="Bold"
-                                TextColor="{StaticResource PrimaryTextColor}"
-                                VerticalOptions="Center" />
+                        <Label
+                            Text="No inspections found"
+                            Style="{StaticResource EmptyStateTitleStyle}" />
 
-                            <!-- Status Badge -->
-                            <Border
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Padding="{StaticResource InspectionListStatusPadding}"
-                                BackgroundColor="{StaticResource BorderColor}"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center">
+                        <Label
+                            Text="Your inspections will appear here."
+                            Style="{StaticResource EmptyStateSubtitleStyle}" />
 
-                                <Border.StrokeShape>
-                                    <RoundRectangle
-                                        CornerRadius="{StaticResource InspectionListStatusCornerRadius}" />
-                                </Border.StrokeShape>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border
+                            Style="{StaticResource InspectionListCardStyle}">
+
+                            <Grid
+                                RowDefinitions="Auto,Auto,Auto"
+                                ColumnDefinitions="*,Auto"
+                                RowSpacing="{StaticResource InspectionListCardSpacing}">
 
                                 <Label
-                                    Text="{Binding Status}"
-                                    FontSize="{StaticResource InspectionListMetaSize}"
-                                    FontAttributes="Bold"
-                                    TextColor="{StaticResource PrimaryTextColor}">
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Text="{Binding Title}"
+                                    Style="{StaticResource InspectionListTitleStyle}" />
 
-                                    <Label.Triggers>
-                                        <DataTrigger
-                                            TargetType="Label"
-                                            Binding="{Binding Status}"
-                                            Value="Pending">
+                                <HorizontalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Spacing="6">
 
-                                            <Setter
-                                                Property="TextColor"
-                                                Value="{StaticResource PendingInspectionColor}" />
-                                        </DataTrigger>
+                                    <Label
+                                        Text="Site:"
+                                        Style="{StaticResource InspectionListMetaLabelStyle}" />
 
-                                        <DataTrigger
-                                            TargetType="Label"
-                                            Binding="{Binding Status}"
-                                            Value="In Progress">
+                                    <Label
+                                        Text="{Binding Site}"
+                                        Style="{StaticResource InspectionListMetaValueStyle}" />
 
-                                            <Setter
-                                                Property="TextColor"
-                                                Value="{StaticResource InProgressInspectionColor}" />
-                                        </DataTrigger>
+                                </HorizontalStackLayout>
 
-                                        <DataTrigger
-                                            TargetType="Label"
-                                            Binding="{Binding Status}"
-                                            Value="Completed">
+                                <Border
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Style="{StaticResource InspectionListStatusBadgeStyle}">
 
-                                            <Setter
-                                                Property="TextColor"
-                                                Value="{StaticResource CompletedInspectionColor}" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                </Label>
+                                    <Label
+                                        Text="{Binding Status}"
+                                        Style="{StaticResource InspectionListStatusTextStyle}" />
+
+                                </Border>
+
+                                <HorizontalStackLayout
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Spacing="6">
+
+                                    <Label
+                                        Text="Scheduled:"
+                                        Style="{StaticResource InspectionListMetaLabelStyle}" />
+
+                                    <Label
+                                        Text="{Binding ScheduledDate,
+                                            StringFormat='{0:dd MMM yyyy}'}"
+                                        Style="{StaticResource InspectionListMetaValueStyle}" />
+
+                                </HorizontalStackLayout>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+
+            <!-- ListView -->
+            <ListView
+                x:Name="InspectionList"
+                ItemsSource="{Binding Inspections}"
+                SelectionMode="Single"
+                ItemSelected="OnItemSelected"
+                IsVisible="False"
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                BackgroundColor="Transparent">
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <ViewCell>
+
+                            <Border
+                                Style="{StaticResource InspectionListCardStyle}">
+
+                                <Grid
+                                    RowDefinitions="Auto,Auto,Auto"
+                                    ColumnDefinitions="*,Auto"
+                                    RowSpacing="{StaticResource InspectionListCardSpacing}">
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource InspectionListTitleStyle}" />
+
+                                    <HorizontalStackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Spacing="6">
+
+                                        <Label
+                                            Text="Site:"
+                                            Style="{StaticResource InspectionListMetaLabelStyle}" />
+
+                                        <Label
+                                            Text="{Binding Site}"
+                                            Style="{StaticResource InspectionListMetaValueStyle}" />
+
+                                    </HorizontalStackLayout>
+
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Style="{StaticResource InspectionListStatusBadgeStyle}">
+
+                                        <Label
+                                            Text="{Binding Status}"
+                                            Style="{StaticResource InspectionListStatusTextStyle}" />
+
+                                    </Border>
+
+                                    <HorizontalStackLayout
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Spacing="6">
+
+                                        <Label
+                                            Text="Scheduled:"
+                                            Style="{StaticResource InspectionListMetaLabelStyle}" />
+
+                                        <Label
+                                            Text="{Binding ScheduledDate,
+                                                StringFormat='{0:dd MMM yyyy}'}"
+                                            Style="{StaticResource InspectionListMetaValueStyle}" />
+
+                                    </HorizontalStackLayout>
+
+                                </Grid>
 
                             </Border>
 
-                            <!-- Site -->
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                Text="{Binding Site, StringFormat='Site: {0}'}"
-                                FontSize="{StaticResource InspectionListMetaSize}"
-                                TextColor="{StaticResource SecondaryTextColor}" />
+                        </ViewCell>
 
-                            <!-- Scheduled Date -->
-                            <Label
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                Text="{Binding ScheduledDate, StringFormat='{0:dd MMM yyyy}'}"
-                                FontSize="{StaticResource InspectionListMetaSize}"
-                                TextColor="{StaticResource SecondaryTextColor}" />
+                    </DataTemplate>
 
-                        </Grid>
+                </ListView.ItemTemplate>
 
-                    </Border>
+            </ListView>
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
-        </CollectionView>
+        </Grid>
 
     </Grid>
 
