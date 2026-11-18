@@ -1,96 +1,170 @@
-# MauiAssignment
+# .NET MAUI Inspection Management Application
 
 ## Overview
 
-MauiAssignment is a cross-platform application developed using **.NET MAUI (Multi-platform App UI)**.
+This project is a cross-platform inspection management application developed using **.NET MAUI (Multi-platform App UI)**.
 
-.NET MAUI allows developers to build applications for Android, iOS, macOS, and Windows using a shared C# codebase and a single-project structure.
+The application provides an interface for inspectors to view inspection summaries, browse inspection records, review inspection details, and access their profile information.
 
-## Project Structure
-
-The application follows the **.NET MAUI single-project architecture**. Most application logic and user interface components are shared across platforms, while platform-specific configurations are maintained separately.
-
-### 1. Shared Application Files
-
-- **App.xaml:** Contains application-level resources, styles, colors, and other shared XAML definitions.
-- **App.xaml.cs:** Defines the application class, handles application lifecycle events, and creates the initial application window.
-- **AppShell.xaml:** Defines the application's navigation structure using Shell.
-- **AppShell.xaml.cs:** Contains the code-behind associated with AppShell and handles navigation configuration.
-- **MainPage.xaml:** Defines the default MainPage user interface.
-- **MainPage.xaml.cs:** Contains the C# logic associated with MainPage.
-- **InspectorProfilePage.xaml:** Defines the Inspector Profile interface, including the inspector's photo and personal information.
-- **InspectorProfilePage.xaml.cs:** Contains the code-behind associated with InspectorProfilePage, including its event handlers.
-- **MauiProgram.cs:** Configures and initializes the MAUI application, including dependency injection, fonts, and other application services.
-- **MauiAssignment.csproj:** Contains project configuration, target frameworks, dependencies, and build settings.
-
-### 2. Platforms Folder
-
-The Platforms folder contains operating-system-specific implementations and configuration files.
-
-- **Android:** Contains Android-specific entry points, application configuration, manifests, and resources.
-- **iOS:** Contains iOS application lifecycle and configuration files.
-- **MacCatalyst:** Contains configuration files required to run the application on macOS through Mac Catalyst.
-- **Windows:** Contains Windows-specific application startup and configuration files.
-
-This separation allows platform-specific functionality to coexist with shared application code.
-
-### 3. Resources Folder
-
-The Resources folder stores assets used throughout the application.
-
-- **AppIcon:** Contains application icons.
-- **Fonts:** Stores custom fonts used throughout the application.
-- **Images:** Contains images and graphical assets, including the inspector profile image.
-- **Raw:** Stores files included directly in the application package.
-- **Splash:** Contains splash screen assets.
-- **Styles:** Contains shared resource dictionaries for application colors, dimensions, and styles.
-
-The Styles folder follows a centralized resource management approach:
-
-- **Colors.xaml:** Defines reusable application colors.
-- **Dimensions.xaml:** Defines shared spacing, font sizes, and layout dimensions.
-- **Styles.xaml:** Defines implicit and explicit styles for reusable UI components.
-
-These resource dictionaries are merged through App.xaml and referenced using `StaticResource` to maintain consistency and avoid hardcoded visual values across pages.
-
-### 4. Application Startup
-
-The application startup process involves the following files:
-
-1. The platform-specific native entry point initializes the MAUI application.
-2. `MauiProgram.cs` configures the application and registers required services.
-3. `App.xaml.cs` creates the application instance and its initial window.
-4. `AppShell.xaml` defines the application's navigation structure and initial page.
-5. `InspectorProfilePage.xaml` displays the Inspector Profile interface through the Shell configuration.
-
-### 5. Running the Application
-
-The application can be executed on supported platforms using Visual Studio.
-
-- **Android:** Run using an Android Emulator or physical Android device.
-- **iOS:** Run using an iOS Simulator or physical iOS device from a Mac.
-- **Windows:** Run using the Windows Machine target.
-- **Mac Catalyst:** Run on a supported Mac environment.
-
-### 6. Architecture Benefits
-
-- **Code Reusability:** Shared code reduces duplication across supported platforms.
-- **Separation of Concerns:** Platform-specific implementations remain isolated from shared application logic.
-- **Maintainability:** A single project structure simplifies development and maintenance.
-- **Resource Consistency:** Centralized resource dictionaries ensure consistent colors, dimensions, and styles throughout the application.
-- **Cross-Platform Support:** Shared UI and business logic can be reused across supported platforms.
+The project was developed as part of a .NET MAUI assignment covering application fundamentals, lifecycle events, layouts, controls, collection views, styling, reusable components, and XAML refactoring.
 
 ---
 
-## Assignment Tasks
+# SETUP & FUNDAMENTALS
 
-### Task 2: Application Lifecycle Events
+## Task 1: Create a .NET MAUI Single-Project Application
 
-**Implementation:**
+### Overview
 
-Application lifecycle events are monitored through the `Window` events in `App.xaml.cs`.
+.NET MAUI allows developers to create cross-platform applications using a shared C# codebase and a single project structure.
 
-The application logs lifecycle events such as:
+The application shares its UI, business logic, models, and resources across platforms while maintaining platform-specific configuration and entry points.
+
+### Project Structure
+
+```text
+Maui_ShreyanshThakur/
+│
+├── App.xaml
+├── App.xaml.cs
+│
+├── AppShell.xaml
+├── AppShell.xaml.cs
+│
+├── DashboardPage.xaml
+├── DashboardPage.xaml.cs
+│
+├── InspectorProfilePage.xaml
+├── InspectorProfilePage.xaml.cs
+│
+├── InspectionListPage.xaml
+├── InspectionListPage.xaml.cs
+│
+├── InspectionListListViewPage.xaml
+├── InspectionListListViewPage.xaml.cs
+│
+├── InspectionFilterPage.xaml
+├── InspectionFilterPage.xaml.cs
+│
+├── Controls/
+│   └── StatusBadge.xaml
+│       StatusBadge.xaml.cs
+│
+├── Models/
+│   ├── Inspection.cs
+│   └── InspectionSampleData.cs
+│
+├── Resources/
+│   ├── AppIcon/
+│   ├── Fonts/
+│   ├── Images/
+│   ├── Raw/
+│   ├── Splash/
+│   └── Styles/
+│       ├── Colors.xaml
+│       ├── Dimensions.xaml
+│       └── Styles.xaml
+│
+├── Platforms/
+│   ├── Android/
+│   ├── iOS/
+│   ├── MacCatalyst/
+│   └── Windows/
+│
+├── MauiProgram.cs
+├── Maui_ShreyanshThakur.csproj
+│
+├── docs/
+│   └── Screenshots/
+│
+└── REFACTOR.md
+```
+
+### Shared Application Files
+
+The following files are shared across supported platforms:
+
+| File | Purpose |
+|---|---|
+| `App.xaml` | Defines application-level resources and shared resource dictionaries. |
+| `App.xaml.cs` | Creates the application and initial window, and handles application-level initialization. |
+| `AppShell.xaml` | Defines the Shell navigation structure and application routes. |
+| `AppShell.xaml.cs` | Contains Shell-related navigation and initialization logic. |
+| `DashboardPage.xaml` | Defines the dashboard user interface. |
+| `DashboardPage.xaml.cs` | Contains dashboard event handlers and page logic. |
+| `InspectorProfilePage.xaml` | Defines the inspector profile interface. |
+| `InspectionListPage.xaml` | Defines the inspection list using CollectionView. |
+| `InspectionListListViewPage.xaml` | Defines the inspection list using ListView. |
+| `InspectionFilterPage.xaml` | Defines the inspection filtering interface. |
+| `Models/Inspection.cs` | Defines the inspection data model. |
+| `Models/InspectionSampleData.cs` | Provides sample inspection records. |
+| `MauiProgram.cs` | Configures application services, fonts, and MAUI initialization. |
+| `Maui_ShreyanshThakur.csproj` | Contains project configuration, target frameworks, dependencies, and build settings. |
+
+### Platforms Folder
+
+The `Platforms` folder contains platform-specific code and configuration required by each operating system.
+
+- **Android:** Contains the Android application entry point, manifest, application configuration, and platform-specific resources.
+- **iOS:** Contains the iOS application entry point, application delegate, and configuration files.
+- **MacCatalyst:** Contains configuration and entry-point files required to run the application on macOS through Mac Catalyst.
+- **Windows:** Contains the Windows application entry point and platform-specific configuration.
+
+Platform-specific files allow the application to integrate with native operating-system functionality while maintaining shared application code.
+
+### Resources Folder
+
+The `Resources` folder contains assets used throughout the application.
+
+| Folder | Purpose |
+|---|---|
+| `AppIcon` | Application icon assets. |
+| `Fonts` | Custom fonts used by the application. |
+| `Images` | Images used throughout the application, including the inspector profile image. |
+| `Raw` | Files packaged directly with the application. |
+| `Splash` | Splash screen assets. |
+| `Styles` | Shared colors, dimensions, and styles. |
+
+### Application Startup
+
+The application startup process follows this sequence:
+
+1. The platform-specific entry point initializes the MAUI application.
+2. `MauiProgram.cs` configures the application, fonts, and services.
+3. `App.xaml.cs` creates the application instance and initial window.
+4. `AppShell.xaml` defines the navigation structure and initial route.
+5. The initial page is displayed to the user.
+
+### Running the Application
+
+The application can be run using Visual Studio on supported platforms.
+
+| Platform | Execution Environment |
+|---|---|
+| Android | Android Emulator or physical Android device |
+| iOS | iOS Simulator or physical iOS device using a Mac |
+| Windows | Windows Machine target |
+| MacCatalyst | Supported macOS environment |
+
+### Architecture Benefits
+
+- **Code Reusability:** Application logic and UI can be shared across platforms.
+- **Maintainability:** Shared code reduces duplication and makes changes easier.
+- **Separation of Concerns:** Platform-specific functionality is isolated in the Platforms folder.
+- **Resource Consistency:** Shared resources maintain consistent styling across pages.
+- **Cross-Platform Development:** Multiple platforms can be supported using a common project.
+
+---
+
+## Task 2: Application Lifecycle Events
+
+### Implementation
+
+Application lifecycle events are monitored through the Window lifecycle events in `App.xaml.cs`.
+
+The application logs lifecycle events using `Debug.WriteLine()`.
+
+The events monitored include:
 
 - `Created`
 - `Activated`
@@ -99,41 +173,79 @@ The application logs lifecycle events such as:
 - `Resumed`
 - `Destroying`
 
-**Why it was needed:**
+### Testing Procedure
 
-Application lifecycle events help identify changes in the application's execution state, such as when an application starts, moves into the background, or returns to the foreground.
+The following actions were performed to observe application lifecycle behavior:
 
-**What I did:**
+1. Launch the application.
+2. Observe the initial lifecycle events.
+3. Press the Android Home button.
+4. Return to the application.
+5. Close the application.
 
-- Registered event handlers for the relevant Window lifecycle events.
-- Used `Debug.WriteLine()` to log lifecycle activity.
-- Tested the application by launching it, pressing the Home button, returning to the application, and closing it.
-- Documented the observed event sequence and potential real-world use cases.
+### Observed Event Sequence
 
-### Task 3: Inspector Profile Page
+> Replace this section with the actual sequence observed in the Debug Output window. Lifecycle event ordering can vary depending on the platform and how the application is closed.
 
-**Implementation:**
+```text
+[Insert the observed lifecycle event sequence here]
+```
+
+### Lifecycle Events and Their Real-World Uses
+
+| Event | Description | Real-World Use |
+|---|---|---|
+| Created | The application window is created. | Initialize window-specific resources and UI state. |
+| Activated | The application window becomes active. | Refresh information or resume user interaction. |
+| Deactivated | The application window loses focus. | Pause animations, save temporary state, or stop sensitive activities. |
+| Stopped | The application window is no longer actively visible. | Save application state and suspend background operations. |
+| Resumed | The application resumes after being suspended. | Restore the previous state and refresh outdated information. |
+| Destroying | The application window is being destroyed. | Release window-specific resources. |
+
+### What I Learned
+
+Lifecycle events help applications respond to changes in their execution state. They are useful for saving state, managing resources, refreshing data, and handling transitions between foreground and background execution.
+
+---
+
+# INSPECTOR PROFILE SCREEN
+
+## Task 3: Create InspectorProfilePage
+
+### Implementation
 
 Created `InspectorProfilePage` using XAML and .NET MAUI layout controls.
 
-**What I did:**
+### Controls and Layouts Used
 
-- Used `VerticalStackLayout` to organize the page content vertically.
-- Used `HorizontalStackLayout` to arrange profile information and other elements horizontally.
-- Added an `Image` control to display the inspector's photograph.
-- Displayed the inspector's name, employee ID, role, email address, and phone number.
-- Added an Edit Profile button with a click event handler.
-- Used shared resource dictionaries for colors, dimensions, and styles.
+- `VerticalStackLayout` to organize the page content vertically.
+- `HorizontalStackLayout` to arrange profile information and controls horizontally.
+- `Image` to display the inspector's photograph.
+- `Label` to display text information.
+- `Button` to provide the Edit Profile action.
+- `Border` to create visually grouped sections and cards.
 
-**Expected result:**
+### Profile Information Displayed
 
-The application displays a structured Inspector Profile page with the inspector's personal information and an Edit Profile action.
+- Inspector photograph
+- Name
+- Employee ID
+- Role
+- Email address
+- Phone number
+- Edit Profile button
 
-### Task 4: Safe Area Handling
+### Result
 
-**Implementation:**
+The Inspector Profile page provides a structured interface for displaying inspector information and an action to edit the profile.
 
-Configured the `SafeAreaEdges` property of `InspectorProfilePage` to `All`.
+---
+
+## Task 4: Safe Area Handling
+
+### Implementation
+
+Configured the `SafeAreaEdges` property on the page.
 
 ```xml
 <ContentPage
@@ -141,68 +253,473 @@ Configured the `SafeAreaEdges` property of `InspectorProfilePage` to `All`.
     SafeAreaEdges="All">
 ```
 
-**Why it was needed:**
+### Why Safe Areas Are Needed
 
-Modern mobile devices have screen features such as camera notches, status bars, rounded corners, navigation bars, and home indicators. Without appropriate safe-area handling, application content may overlap these areas or become difficult to access.
+Modern mobile devices have screen features such as:
 
-**What I did:**
+- Camera notches and cutouts.
+- Status bars.
+- Rounded screen corners.
+- Home indicators.
+- System navigation areas.
 
-- Used `SafeAreaEdges="All"` to ensure the page respects all safe-area insets.
-- Retained the existing `ScrollView` so content remains accessible on smaller screens.
-- Used the application's shared `ResourceDictionary` for page padding and layout spacing.
-- Avoided manually adding device-specific top or bottom margins.
+Without safe-area handling, application content may overlap system UI or become difficult to access.
 
-**Expected result:**
+### What I Did
 
-The Inspector Profile page remains properly positioned across different device sizes and avoids overlapping system UI elements, including the notch, status bar, home indicator, and on-screen keyboard.
+- Used `SafeAreaEdges="All"` to respect safe-area insets.
+- Retained the `ScrollView` to allow content to remain accessible on smaller screens.
+- Used shared page padding and spacing resources.
+- Avoided manually adding device-specific top and bottom margins.
 
-# CollectionView vs ListView Comparison
+### Result
 
-## Objective
+The page content is positioned within the available safe area, reducing the risk of overlapping the notch, status bar, navigation bar, and home indicator.
 
-The objective of this task was to implement the same inspection list using both CollectionView and ListView in .NET MAUI and compare their features and suitability for larger datasets.
+---
 
-## Implementation
+# DASHBOARD
 
-Two separate pages were created:
+## Task 5: Create DashboardPage
 
-- `InspectionListPage`: Uses CollectionView to display 12 hardcoded inspection records.
-- `InspectionListListViewPage`: Uses ListView to display the same 12 inspection records.
+### Implementation
 
-Both implementations display:
+Created a dashboard using a `Grid` layout with four summary cards and a Today's Inspections section.
+
+The summary cards display:
+
+- Total Inspections
+- Pending
+- In Progress
+- Completed
+
+The dashboard also includes a Priority Overview section containing High, Medium, and Low priority tags.
+
+### Grid Layout
+
+The dashboard uses a two-column grid for the summary cards.
+
+```xml
+<Grid
+    ColumnDefinitions="*,*"
+    RowDefinitions="Auto,Auto"
+    ColumnSpacing="{StaticResource DashboardGridSpacing}"
+    RowSpacing="{StaticResource DashboardGridSpacing}">
+```
+
+### Grid Sizing Explanation
+
+| Grid Sizing | Usage | Reason |
+|---|---|---|
+| `Auto` | Rows containing content with natural height. | The row adjusts to the size required by its content. |
+| `*` | Summary card columns. | Available space is distributed evenly between the columns. |
+| Absolute sizes | Fixed dimensions for elements such as icons or specific visual indicators where required. | Provides predictable dimensions for elements that should not expand or shrink. |
+
+### Today's Inspections
+
+The dashboard includes an inspection section containing:
+
+- Inspection title
+- Site
+- Scheduled time
+- Priority tag
+- Status badge
+- View All navigation action
+
+### Priority Tags
+
+Priority tags are displayed using `FlexLayout`.
+
+```xml
+<FlexLayout
+    Direction="Row"
+    Wrap="Wrap"
+    AlignItems="Start">
+```
+
+The `Wrap="Wrap"` property allows the tags to move onto the next line when there is insufficient horizontal space.
+
+### Status Indicators
+
+The dashboard uses the reusable `StatusBadge` control to display inspection statuses.
+
+### Result
+
+The dashboard provides an overview of inspection counts, priority levels, and scheduled inspection activities.
+
+---
+
+## Task 6: Responsive Layout Testing
+
+### Objective
+
+Test the dashboard in portrait and landscape orientations and on both small and large emulator screen sizes.
+
+The objective was to ensure:
+
+- No content is clipped.
+- No elements overlap.
+- Cards remain readable.
+- Priority tags wrap correctly.
+- The inspection list remains accessible.
+- Layout spacing adapts to different screen sizes.
+
+### Test Matrix
+
+| Device Size | Orientation | Result |
+|---|---|---|
+| Small emulator | Portrait | [Record result] |
+| Small emulator | Landscape | [Record result] |
+| Large emulator | Portrait | [Record result] |
+| Large emulator | Landscape | [Record result] |
+
+### Changes Made During Testing
+
+[Document the actual layout changes made after testing. For example: adjusting card spacing, reducing unnecessary padding, allowing priority tags to wrap, or modifying layout proportions.]
+
+### Screenshots
+
+Screenshots documenting the layout before and after responsive adjustments are stored in:
+
+```text
+docs/Screenshots/
+```
+
+Suggested screenshot naming:
+
+```text
+docs/Screenshots/
+├── dashboard-before-small-portrait.png
+├── dashboard-after-small-portrait.png
+├── dashboard-after-small-landscape.png
+├── dashboard-after-large-portrait.png
+└── dashboard-after-large-landscape.png
+```
+
+### Result
+
+[Complete this section after testing all four configurations. Confirm whether any clipping or overlapping issues remain.]
+
+---
+
+# CONTROLS & LISTS
+
+## Task 7: Inspection List Using CollectionView and ListView
+
+### Objective
+
+Create an inspection list using both `CollectionView` and `ListView` and compare their capabilities.
+
+### Implementation
+
+Two pages were created:
+
+- `InspectionListPage` – uses `CollectionView`.
+- `InspectionListListViewPage` – uses `ListView`.
+
+Both pages use the same inspection model and sample data.
+
+The sample dataset contains at least 10 inspection records with the following properties:
+
 - Inspection title
 - Site
 - Status
 - Scheduled date
 
-Both lists use an ItemTemplate to define the appearance of each inspection and support single-item selection with visual highlighting.
+Each control uses an `ItemTemplate` to define the appearance of individual inspection records.
 
-The inspection records are shared through a common model and sample-data class to avoid duplicating the data.
+### Selection
 
-## Comparison
+Single-item selection is enabled, and the selected inspection is visually highlighted.
+
+### Shared Data
+
+Inspection records are defined in:
+
+```text
+Models/Inspection.cs
+Models/InspectionSampleData.cs
+```
+
+The same sample data is reused by both list implementations to ensure a fair comparison.
+
+### CollectionView vs ListView
 
 | Feature | CollectionView | ListView |
 |---|---|---|
-| Virtualization | Supported | Supported |
+| Item virtualization | Supported | Supported |
 | Item selection | Supported | Supported |
 | Custom item templates | Supported | Supported |
-| Multiple layouts | Supported | Limited |
-| Empty view | Built-in | Requires additional handling |
-| Flexibility | High | More limited |
-| API direction | Modern MAUI control | Older control |
+| Layout flexibility | High | More limited |
+| Multiple layouts | Supported | More limited |
+| Empty view | Built-in support | Requires additional handling |
+| API | Modern collection control | Older collection control |
 
-## Choice for 1,000 Items
+### Which Control Would I Choose for 1,000 Items?
 
-I would choose CollectionView for displaying 1,000 inspection records.
+I would choose `CollectionView` for displaying 1,000 inspection records.
 
-CollectionView provides efficient item virtualization, flexible layouts, built-in empty-view support and a modern API designed for collection-based interfaces.
+Both controls support virtualization, which allows them to display large collections without creating every item visually at the same time.
 
-ListView also supports virtualization and can display large collections, but CollectionView offers greater flexibility and is the recommended choice for new .NET MAUI applications.
+However, `CollectionView` provides a more flexible layout system, built-in empty-view support, and a modern API that is better suited to new .NET MAUI applications.
 
-Actual performance depends on the complexity of the item template, data retrieval, image loading and the device being used.
+Actual performance also depends on the complexity of the item template, data retrieval, image loading, and device hardware.
 
-## Conclusion
+### Conclusion
 
-Both controls were implemented successfully using the same inspection data.
+Both controls were implemented using the same inspection data.
 
-CollectionView is the preferred option for the inspection-management application because it offers better layout flexibility, modern collection features and a more suitable foundation for future enhancements.
+`CollectionView` is the preferred choice for the inspection management application because it provides greater layout flexibility and is a better foundation for future enhancements.
+
+---
+
+## Task 8: Common Controls and Custom Resources
+
+### Objective
+
+Use at least five common .NET MAUI controls across the application and include an image and custom font.
+
+### Controls Used
+
+| Control | Usage |
+|---|---|
+| `Label` | Display headings, names, descriptions, and inspection information. |
+| `Button` | Provide actions such as Edit Profile and navigation actions. |
+| `Image` | Display the inspector's profile photograph. |
+| `Entry` | Accept text input where required. |
+| `Picker` | Allow selection from predefined options. |
+| `Switch` | Provide a Boolean toggle where required. |
+| `DatePicker` | Select a date for inspection filtering. |
+| `CollectionView` | Display inspection records. |
+| `ListView` | Demonstrate an alternative collection implementation. |
+| `Border` | Create cards, badges, and visually grouped content. |
+| `Grid` | Arrange dashboard summary cards and page sections. |
+| `FlexLayout` | Display priority tags with wrapping support. |
+
+### Custom Font
+
+The application uses the Poppins font family.
+
+Font files are stored in:
+
+```text
+Resources/Fonts/
+```
+
+Fonts are registered in `MauiProgram.cs` and referenced through font aliases.
+
+Example:
+
+```csharp
+fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
+fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemiBold");
+```
+
+### Images
+
+Images are stored in:
+
+```text
+Resources/Images/
+```
+
+The inspector's photograph is displayed using the MAUI `Image` control.
+
+### Result
+
+Common controls, custom fonts, and image assets are used throughout the application to provide a consistent and functional UI.
+
+---
+
+# STYLING & CUSTOM UI
+
+## Task 9: Centralized ResourceDictionary
+
+### Objective
+
+Move colors, font sizes, and spacing values into shared resource dictionaries.
+
+No page should contain hardcoded color values or repeated visual styling values.
+
+### Resource Files
+
+```text
+Resources/Styles/
+├── Colors.xaml
+├── Dimensions.xaml
+└── Styles.xaml
+```
+
+### Colors.xaml
+
+Contains reusable color definitions used throughout the application.
+
+Examples include:
+
+- Page background colors
+- Primary colors
+- Text colors
+- Card backgrounds
+- Border colors
+- Status colors
+- Priority colors
+
+### Dimensions.xaml
+
+Contains reusable dimensions such as:
+
+- Page padding
+- Layout spacing
+- Font sizes
+- Card padding
+- Corner radii
+- Icon sizes
+- Control heights
+
+### Styles.xaml
+
+Contains shared styles for controls and components.
+
+The dictionary includes implicit styles and explicit styles.
+
+### Implicit Styles
+
+Implicit styles are applied automatically to controls based on their target type.
+
+For example, a shared Label style can apply a default font family and text color to Labels without requiring each Label to explicitly reference the style.
+
+### Explicit Styles
+
+Explicit styles are applied using a specific resource key.
+
+Example:
+
+```xml
+<Label
+    Text="Dashboard"
+    Style="{StaticResource DashboardHeaderTitleStyle}" />
+```
+
+Explicit styles allow different visual variants of the same control to be used throughout the application.
+
+### ResourceDictionary Integration
+
+The shared dictionaries are merged into the application's resource dictionary through `App.xaml`.
+
+Pages reference resources using:
+
+```xml
+{StaticResource ResourceKey}
+```
+
+### Benefits
+
+- Eliminates repeated styling declarations.
+- Improves visual consistency.
+- Simplifies maintenance.
+- Allows global styling changes without modifying every page.
+- Reduces hardcoded values in page XAML.
+
+---
+
+## Task 10: Reusable StatusBadge and ControlTemplate
+
+### Reusable StatusBadge
+
+Created a custom `StatusBadge` control using `ContentView`.
+
+Location:
+
+```text
+Controls/
+├── StatusBadge.xaml
+└── StatusBadge.xaml.cs
+```
+
+The control exposes a bindable `Status` property.
+
+Supported statuses:
+
+- Pending
+- In Progress
+- Completed
+
+Each status displays a different background color and text color.
+
+### Usage
+
+```xml
+<controls:StatusBadge Status="{Binding Status}" />
+```
+
+The same control is reused on the Dashboard and Inspection List pages.
+
+### Benefits
+
+- Removes duplicated status badge XAML.
+- Centralizes status-specific styling.
+- Provides consistent appearance across pages.
+- Makes future status changes easier.
+
+### Reusable Card ControlTemplate
+
+A reusable card `ControlTemplate` was created in the shared resource dictionary.
+
+The template provides a common card appearance, including:
+
+- Background
+- Border
+- Corner radius
+- Padding
+
+The content of the card can be supplied by the page using the template.
+
+### Usage
+
+The reusable card template is used for card-based layouts on the Dashboard and Inspector Profile pages.
+
+### Benefits
+
+- Avoids duplicating card container markup.
+- Maintains consistent card appearance.
+- Simplifies page XAML.
+- Allows card styling to be updated centrally.
+
+---
+
+## Task 11: XAML Refactoring
+
+Detailed before-and-after examples of duplicated XAML that was removed and layouts that were simplified are documented separately.
+
+See:
+
+[REFACTOR.md](REFACTOR.md)
+
+The refactoring document describes:
+
+1. Replacing duplicated status badge markup with a reusable `StatusBadge` control.
+2. Centralizing colors, dimensions, and styles into resource dictionaries.
+3. Simplifying layouts and reusing common card structures.
+
+---
+
+# Conclusion
+
+This assignment provided practical experience building a cross-platform application using .NET MAUI.
+
+The application demonstrates:
+
+- Single-project cross-platform architecture.
+- Application lifecycle event handling.
+- Page creation using XAML.
+- Safe-area handling.
+- Responsive layouts using Grid, FlexLayout, and stack layouts.
+- CollectionView and ListView implementations.
+- Common MAUI controls.
+- Custom fonts and images.
+- Centralized resource dictionaries.
+- Reusable custom controls.
+- ControlTemplate-based UI reuse.
+- XAML refactoring and maintainability improvements.
+
+The resulting application provides a foundation for a cross-platform inspection management interface while demonstrating the core concepts of .NET MAUI development.
