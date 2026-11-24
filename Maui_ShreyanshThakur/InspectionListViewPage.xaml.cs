@@ -24,9 +24,9 @@ namespace Maui_ShreyanshThakur
                 await DisplayAlert(
                     "Inspection Selected",
                     $"Title: {selectedInspection.Title}\n" +
-                    $"Site: {selectedInspection.Site}\n" +
+                    $"Site: {selectedInspection.SiteName}\n" +
                     $"Status: {selectedInspection.Status}\n" +
-                    $"Scheduled: {selectedInspection.ScheduledDate:dd MMM yyyy}",
+                    $"Scheduled: {selectedInspection.ScheduledOn:dd MMM yyyy}",
                     "OK");
             }
         }

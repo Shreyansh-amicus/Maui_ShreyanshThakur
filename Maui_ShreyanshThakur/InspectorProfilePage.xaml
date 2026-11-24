@@ -19,10 +19,6 @@
                 Spacing="{StaticResource SmallSpacing}">
 
                 <Label
-                    Text="Inspector Profile"
-                    Style="{StaticResource PageTitleStyle}" />
-
-                <Label
                     Text="View your personal and professional details"
                     Style="{StaticResource SecondaryTextStyle}" />
 

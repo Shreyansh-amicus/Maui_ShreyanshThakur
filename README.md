@@ -701,3 +701,131 @@ The application demonstrates:
 - XAML refactoring and maintainability improvements.
 
 The resulting application provides a foundation for a cross-platform inspection management interface while demonstrating the core concepts of .NET MAUI development.
+
+# Assignment - 2
+
+## Task 2: InspectionListViewModel and ObservableCollection
+
+### Objective
+
+Create an `InspectionListViewModel` that manages the inspection collection and bind `InspectionListPage` to it using the MVVM pattern.
+
+### Implementation
+
+Created `InspectionListViewModel.cs` inside the `ViewModels` folder.
+
+The ViewModel inherits from `BaseViewModel` and exposes an `ObservableCollection<Inspection>` property.
+
+The collection is initialized using the existing `InspectionSampleData.GetInspections()` method.
+
+The `InspectionListPage.xaml` binds its CollectionView to the ViewModel using:
+
+```xml
+ItemsSource="{Binding Inspections}"
+```
+
+The page's code-behind contains only `InitializeComponent()` and the BindingContext assignment.
+
+An Add Inspection command was also added to the ViewModel to test collection updates at runtime.
+
+### ObservableCollection vs List Experiment
+
+The collection type was temporarily changed from `ObservableCollection<Inspection>` to `List<Inspection>`.
+
+When a new inspection was added at runtime, the item was successfully added to the List in memory, but the CollectionView did not automatically display it.
+
+This happened because `List<T>` does not implement `INotifyCollectionChanged` and therefore does not notify the UI when items are added or removed.
+
+When `ObservableCollection<Inspection>` was used instead, the UI updated automatically because the collection raises a `CollectionChanged` event whenever its contents change.
+
+### Comparison
+
+| Feature | List | ObservableCollection |
+|---|---|---|
+| Stores multiple items | Yes | Yes |
+| Supports adding/removing items | Yes | Yes |
+| Notifies UI when items are added or removed | No | Yes |
+| Implements `INotifyCollectionChanged` | No | Yes |
+| Suitable for automatically updating bound collections | Not by itself | Yes |
+
+### Conclusion
+
+`ObservableCollection` is more suitable for this inspection list because the application needs to reflect collection changes immediately without manually refreshing the UI.
+
+The experiment demonstrated the importance of collection change notifications in data-bound MAUI applications.
+
+## Task 3: IsBusy and Asynchronous Loading
+
+### Implementation
+
+An `IsBusy` property was added to `InspectionListViewModel` to track whether the inspection data is currently loading.
+
+When the page is opened, the ViewModel starts loading the inspection list. A simulated two-second delay is introduced using `Task.Delay(2000)` to represent an asynchronous API request.
+
+During this period:
+- `IsBusy` is set to `true`.
+- An `ActivityIndicator` is displayed.
+- The CollectionView and ListView remain hidden.
+
+After the delay, the sample inspection data is loaded into the `ObservableCollection`.
+Once loading is complete, `IsBusy` is set to `false`, the ActivityIndicator disappears, and the inspection list becomes visible.
+
+### MVVM Responsibilities
+
+The application follows the Model-View-ViewModel (MVVM) pattern to separate data, presentation and UI responsibilities.
+
+#### 1. Model
+
+The Model represents the application's data.
+
+In this application, `Inspection.cs` defines the Inspection model and its properties:
+
+- Id
+- Title
+- SiteName
+- Status
+- Priority
+- ScheduledOn
+- InspectorName
+- Notes
+
+The model represents an inspection and its associated information. It does not contain page layout or view-navigation logic.
+
+#### 2. View
+
+The View represents the user interface.
+
+In this application, `InspectionListPage.xaml` is responsible for displaying:
+
+- The inspection count.
+- CollectionView and ListView layouts.
+- The view toggle buttons.
+- Inspection cards and status badges.
+- The ActivityIndicator during loading.
+- The empty-state message.
+
+The View uses data binding to display information from the ViewModel and forwards user interactions through commands.
+
+The code-behind only initializes the page and assigns its BindingContext.
+
+#### 3. ViewModel
+
+The ViewModel acts as the connection between the Model and the View.
+
+In this application, `InspectionListViewModel.cs` is responsible for:
+
+- Maintaining the ObservableCollection of inspections.
+- Loading inspection data asynchronously.
+- Managing the IsBusy property.
+- Controlling the CollectionView and ListView toggle state.
+- Providing the inspection count.
+- Handling inspection selection through commands.
+- Notifying the View when bound properties change.
+
+The ViewModel does not directly define the page layout. Instead, it exposes properties and commands that the View binds to.
+
+### Benefits of MVVM
+
+Using MVVM separates responsibilities and makes the application easier to maintain and test.
+
+Changes to the UI can be made without rewriting the data-loading logic, while the ViewModel can manage presentation behavior without depending on the visual layout of the page.

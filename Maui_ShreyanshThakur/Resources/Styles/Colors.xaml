@@ -95,5 +95,7 @@
 
     <Color x:Key="ReusableCardBackgroundColor">#FFFFFF</Color>
     <Color x:Key="ReusableCardBorderColor">#E5E7EB</Color>
+    <Color x:Key="InspectionListCardBorderColor">#011111</Color>
+    <Color x:Key="InspectionListCardBackgroundColor">#EFF6FF</Color>
 
 </ResourceDictionary>

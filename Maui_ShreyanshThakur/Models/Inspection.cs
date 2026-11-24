@@ -1,43 +1,73 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿
+using Maui_ShreyanshThakur.ViewModels;
 
-namespace Maui_ShreyanshThakur.Models
+namespace Maui_ShreyanshThakur.Models;
+
+public class Inspection : BaseViewModel
 {
-    public class Inspection : INotifyPropertyChanged
+    private int _id;
+    private string _title = string.Empty;
+    private string _siteName = string.Empty;
+    private string _status = "Pending";
+    private string _priority = "Medium";
+    private DateTime _scheduledOn;
+    private string _inspectorName = string.Empty;
+    private string _notes = string.Empty;
+
+    // Additional property retained for list selection highlighting.
+    private bool _isSelected;
+
+    public int Id
     {
-        public int Id { get; set; }
+        get => _id;
+        set => SetProperty(ref _id, value);
+    }
 
-        public string Title { get; set; } = string.Empty;
+    public string Title
+    {
+        get => _title;
+        set => SetProperty(ref _title, value);
+    }
 
-        public string Site { get; set; } = string.Empty;
+    public string SiteName
+    {
+        get => _siteName;
+        set => SetProperty(ref _siteName, value);
+    }
 
-        public string Status { get; set; } = string.Empty;
+    public string Status
+    {
+        get => _status;
+        set => SetProperty(ref _status, value);
+    }
 
-        public DateTime ScheduledDate { get; set; }
+    public string Priority
+    {
+        get => _priority;
+        set => SetProperty(ref _priority, value);
+    }
 
-        private bool _isSelected;
+    public DateTime ScheduledOn
+    {
+        get => _scheduledOn;
+        set => SetProperty(ref _scheduledOn, value);
+    }
 
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set
-            {
-                if (_isSelected == value)
-                    return;
+    public string InspectorName
+    {
+        get => _inspectorName;
+        set => SetProperty(ref _inspectorName, value);
+    }
 
-                _isSelected = value;
-                OnPropertyChanged();
-            }
-        }
+    public string Notes
+    {
+        get => _notes;
+        set => SetProperty(ref _notes, value);
+    }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(
-            [CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(
-                this,
-                new PropertyChangedEventArgs(propertyName));
-        }
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => SetProperty(ref _isSelected, value);
     }
 }

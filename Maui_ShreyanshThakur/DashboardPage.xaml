@@ -17,15 +17,11 @@
 
             <!-- ================= HEADER ================= -->
 
-            <Grid ColumnDefinitions="*,Auto">
+            <Grid ColumnDefinitions="*, Auto">
 
                 <VerticalStackLayout
                     Spacing="{StaticResource DashboardHeaderSpacing}"
                     VerticalOptions="Center">
-
-                    <Label
-                        Text="Dashboard"
-                        Style="{StaticResource DashboardHeaderTitleStyle}" />
 
                     <Label
                         Text="Overview of your inspections"
@@ -54,31 +50,31 @@
             <!-- ================= SUMMARY CARDS ================= -->
 
             <Grid
-    ColumnDefinitions="*,*"
-    RowDefinitions="Auto,Auto"
-    ColumnSpacing="{StaticResource DashboardGridSpacing}"
-    RowSpacing="{StaticResource DashboardGridSpacing}">
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="{StaticResource DashboardGridSpacing}"
+                RowSpacing="{StaticResource DashboardGridSpacing}">
 
                 <!-- Total -->
 
                 <Border
-        Grid.Row="0"
-        Grid.Column="0"
-        Style="{StaticResource DashboardSummaryCardStyle}">
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource DashboardSummaryCardStyle}">     
 
                     <VerticalStackLayout
-            Style="{StaticResource DashboardSummaryCardContentStyle}">
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
 
                         <Label
-                Text="Total Inspections"
-                Style="{StaticResource DashboardSummaryTitleStyle}" />
+                            Text="Total Inspections"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />  
 
                         <Label
-                Text="24"
-                Style="{StaticResource DashboardTotalMetricStyle}" />
+                            Text="24"
+                            Style="{StaticResource DashboardTotalMetricStyle}" />
 
                         <BoxView
-                Style="{StaticResource DashboardTotalIndicatorStyle}" />
+                            Style="{StaticResource DashboardTotalIndicatorStyle}" />
 
                     </VerticalStackLayout>
 
@@ -87,23 +83,23 @@
                 <!-- Pending -->
 
                 <Border
-        Grid.Row="0"
-        Grid.Column="1"
-        Style="{StaticResource DashboardSummaryCardStyle}">
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
 
                     <VerticalStackLayout
-            Style="{StaticResource DashboardSummaryCardContentStyle}">
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
 
                         <Label
-                Text="Pending"
-                Style="{StaticResource DashboardSummaryTitleStyle}" />
+                            Text="Pending"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />      
 
                         <Label
-                Text="8"
-                Style="{StaticResource DashboardPendingMetricStyle}" />
+                            Text="8"
+                            Style="{StaticResource DashboardPendingMetricStyle}" />
 
                         <BoxView
-                Style="{StaticResource DashboardPendingIndicatorStyle}" />
+                            Style="{StaticResource DashboardPendingIndicatorStyle}" />
 
                     </VerticalStackLayout>
 
@@ -112,23 +108,23 @@
                 <!-- In Progress -->
 
                 <Border
-        Grid.Row="1"
-        Grid.Column="0"
-        Style="{StaticResource DashboardSummaryCardStyle}">
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
 
                     <VerticalStackLayout
-            Style="{StaticResource DashboardSummaryCardContentStyle}">
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
 
                         <Label
-                Text="In Progress"
-                Style="{StaticResource DashboardSummaryTitleStyle}" />
+                            Text="In Progress"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />
 
                         <Label
-                Text="10"
-                Style="{StaticResource DashboardInProgressMetricStyle}" />
+                            Text="10"
+                            Style="{StaticResource DashboardInProgressMetricStyle}" />
 
                         <BoxView
-                Style="{StaticResource DashboardInProgressIndicatorStyle}" />
+                            Style="{StaticResource DashboardInProgressIndicatorStyle}" />
 
                     </VerticalStackLayout>
 
@@ -137,23 +133,23 @@
                 <!-- Completed -->
 
                 <Border
-        Grid.Row="1"
-        Grid.Column="1"
-        Style="{StaticResource DashboardSummaryCardStyle}">
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource DashboardSummaryCardStyle}">
 
                     <VerticalStackLayout
-            Style="{StaticResource DashboardSummaryCardContentStyle}">
+                        Style="{StaticResource DashboardSummaryCardContentStyle}">
 
                         <Label
-                Text="Completed"
-                Style="{StaticResource DashboardSummaryTitleStyle}" />
+                            Text="Completed"
+                            Style="{StaticResource DashboardSummaryTitleStyle}" />
 
                         <Label
-                Text="6"
-                Style="{StaticResource DashboardCompletedMetricStyle}" />
+                            Text="6"
+                            Style="{StaticResource DashboardCompletedMetricStyle}" />
 
                         <BoxView
-                Style="{StaticResource DashboardCompletedIndicatorStyle}" />
+                            Style="{StaticResource DashboardCompletedIndicatorStyle}" />
 
                     </VerticalStackLayout>
 
@@ -166,22 +162,22 @@
             <!-- ================= PRIORITY OVERVIEW ================= -->
 
             <VerticalStackLayout
-    Spacing="{StaticResource DashboardSectionSpacing}">
+                Spacing="{StaticResource DashboardSectionSpacing}">
 
                 <!-- Section Header -->
 
                 <Grid ColumnDefinitions="*,Auto">
 
                     <Label
-            Text="Priority Overview"
-            Style="{StaticResource DashboardSectionTitleStyle}"
-            VerticalOptions="Center" />
+                        Text="Priority Overview"
+                        Style="{StaticResource DashboardSectionTitleStyle}"
+                        VerticalOptions="Center" />
 
                     <!-- Filter Button -->
 
                     <Border
-            Grid.Column="1"
-            Style="{StaticResource DashboardFilterButtonStyle}">
+                        Grid.Column="1"
+                        Style="{StaticResource DashboardFilterButtonStyle}">
 
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
@@ -189,11 +185,11 @@
                         </Border.GestureRecognizers>
 
                         <HorizontalStackLayout
-                Style="{StaticResource DashboardFilterButtonContentStyle}">
+                            Style="{StaticResource DashboardFilterButtonContentStyle}">
 
                             <Label
-                    Text="Filter"
-                    Style="{StaticResource DashboardFilterButtonLabelStyle}" />
+                                Text="Filter"
+                                Style="{StaticResource DashboardFilterButtonLabelStyle}" />
 
                         </HorizontalStackLayout>
 
@@ -204,40 +200,40 @@
                 <!-- Priority Tags -->
 
                 <FlexLayout
-        Direction="Row"
-        Wrap="Wrap"
-        AlignItems="Start">
+                    Direction="Row"
+                    Wrap="Wrap"
+                    AlignItems="Start">
 
                     <!-- High -->
 
                     <Border
-            Style="{StaticResource DashboardHighPriorityTagStyle}">
+                        Style="{StaticResource DashboardHighPriorityTagStyle}">
 
                         <Label
-                Text="High"
-                Style="{StaticResource DashboardHighPriorityLabelStyle}" />
+                            Text="High"
+                            Style="{StaticResource DashboardHighPriorityLabelStyle}" />
 
                     </Border>
 
                     <!-- Medium -->
 
                     <Border
-            Style="{StaticResource DashboardMediumPriorityTagStyle}">
+                        Style="{StaticResource DashboardMediumPriorityTagStyle}">
 
                         <Label
-                Text="Medium"
-                Style="{StaticResource DashboardMediumPriorityLabelStyle}" />
+                            Text="Medium"
+                            Style="{StaticResource DashboardMediumPriorityLabelStyle}" />
 
                     </Border>
 
                     <!-- Low -->
 
                     <Border
-            Style="{StaticResource DashboardLowPriorityTagStyle}">
+                        Style="{StaticResource DashboardLowPriorityTagStyle}">
 
                         <Label
-                Text="Low"
-                Style="{StaticResource DashboardLowPriorityLabelStyle}" />
+                            Text="Low"
+                            Style="{StaticResource DashboardLowPriorityLabelStyle}" />
 
                     </Border>
 
