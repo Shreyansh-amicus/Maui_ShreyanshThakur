@@ -2,22 +2,46 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using Maui_ShreyanshThakur.Commands;
 using Maui_ShreyanshThakur.Models;
 
 namespace Maui_ShreyanshThakur.ViewModels;
 
 public class InspectionListViewModel : BaseViewModel
 {
+    // Keeps the original collection so searching doesn't permanently
+    // remove inspections from the data source.
+    private readonly List<Inspection> _allInspections = new();
+
     private bool _isBusy;
+    private bool _isRefreshing;
     private bool _isCollectionViewSelected = true;
+    private string _searchText = string.Empty;
 
     public ObservableCollection<Inspection> Inspections { get; }
 
+    // Commands
+    public RelayCommand ShowCollectionViewCommand { get; }
+    public RelayCommand ShowListViewCommand { get; }
+    public AsyncRelayCommand LoadInspectionsCommand { get; }
+
+    public ICommand InspectionSelectedCommand { get; }
+
+    // Collection information
     public string InspectionCountText =>
         $"{Inspections.Count} inspections";
 
-    // Indicates whether the data is currently loading.
+    public bool HasInspections =>
+        Inspections.Count > 0;
+
+    // Pull-to-refresh state
+    public bool IsRefreshing
+    {
+        get => _isRefreshing;
+        set => SetProperty(ref _isRefreshing, value);
+    }
+
+    // Loading state
     public bool IsBusy
     {
         get => _isBusy;
@@ -27,11 +51,16 @@ public class InspectionListViewModel : BaseViewModel
             {
                 OnPropertyChanged(nameof(IsCollectionViewVisible));
                 OnPropertyChanged(nameof(IsListViewVisible));
+
+                // Notify every command whose CanExecute depends on IsBusy.
+                LoadInspectionsCommand.NotifyCanExecuteChanged();
+                ShowCollectionViewCommand.NotifyCanExecuteChanged();
+                ShowListViewCommand.NotifyCanExecuteChanged();
             }
         }
     }
 
-    // Controls which view is selected.
+    // View selection
     public bool IsCollectionViewSelected
     {
         get => _isCollectionViewSelected;
@@ -46,83 +75,166 @@ public class InspectionListViewModel : BaseViewModel
         }
     }
 
-    public bool IsListViewSelected => !IsCollectionViewSelected;
+    public bool IsListViewSelected =>
+        !IsCollectionViewSelected;
 
-    // A view should only be visible when loading is finished.
     public bool IsCollectionViewVisible =>
         !IsBusy && IsCollectionViewSelected;
 
     public bool IsListViewVisible =>
         !IsBusy && IsListViewSelected;
 
-    public ICommand ShowCollectionViewCommand { get; }
-
-    public ICommand ShowListViewCommand { get; }
-
-    public ICommand InspectionSelectedCommand { get; }
+    // Search
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            if (SetProperty(ref _searchText, value))
+            {
+                ApplyFilter();
+            }
+        }
+    }
 
     public InspectionListViewModel()
     {
-        // Start with an empty collection.
         Inspections = new ObservableCollection<Inspection>();
 
         Inspections.CollectionChanged += OnInspectionsCollectionChanged;
 
-        ShowCollectionViewCommand = new Command(
-            () => IsCollectionViewSelected = true);
+        // Initialize view toggle commands.
+        ShowCollectionViewCommand = new RelayCommand(
+            () => IsCollectionViewSelected = true,
+            () => !IsBusy);
 
-        ShowListViewCommand = new Command(
-            () => IsCollectionViewSelected = false);
+        ShowListViewCommand = new RelayCommand(
+            () => IsCollectionViewSelected = false,
+            () => !IsBusy);
 
+        // Initialize asynchronous loading command.
+        LoadInspectionsCommand = new AsyncRelayCommand(
+            LoadInspectionsAsync,
+            () => !IsBusy);
+
+        // Retain inspection selection for the ListView.
         InspectionSelectedCommand = new Command<Inspection>(
             async inspection => await OnInspectionSelectedAsync(inspection));
 
-        // Begin loading inspections.
-        _ = LoadInspectionsAsync();
+        // Automatically load inspections when the ViewModel is created.
+        _ = LoadInspectionsCommand.ExecuteAsync();
     }
 
+    // Load and refresh inspections.
     private async Task LoadInspectionsAsync()
     {
         try
         {
             IsBusy = true;
 
-            // Simulate a network/API loading delay.
+            // Simulate an API request.
             await Task.Delay(2000);
 
-            // Load the sample inspection data after the delay.
-            var inspections = InspectionSampleData.GetInspections();
+            _allInspections.Clear();
 
-            foreach (var inspection in inspections)
+            _allInspections.AddRange(
+                InspectionSampleData.GetInspections());
+
+            ApplyFilter();
+        }
+        catch (Exception ex)
+        {
+            if (Shell.Current is not null)
             {
-                Inspections.Add(inspection);
+                await Shell.Current.DisplayAlert(
+                    "Loading Error",
+                    $"Unable to load inspections: {ex.Message}",
+                    "OK");
             }
         }
         finally
         {
             IsBusy = false;
+
+            // Stop the RefreshView indicator after the operation.
+            IsRefreshing = false;
         }
     }
 
+    // Apply the search filter to the original collection.
+    private void ApplyFilter()
+    {
+        string searchTerm = SearchText.Trim();
+
+        IEnumerable<Inspection> filteredInspections =
+            _allInspections.Where(inspection =>
+                string.IsNullOrWhiteSpace(searchTerm) ||
+                MatchesSearch(inspection, searchTerm));
+
+        UpdateDisplayedInspections(filteredInspections);
+    }
+
+    // Check whether an inspection matches the search term.
+    private static bool MatchesSearch(
+        Inspection inspection,
+        string searchTerm)
+    {
+        return
+            ContainsSearchTerm(inspection.Title, searchTerm) ||
+            ContainsSearchTerm(inspection.SiteName, searchTerm) ||
+            ContainsSearchTerm(inspection.Status, searchTerm) ||
+            ContainsSearchTerm(inspection.Priority, searchTerm) ||
+            ContainsSearchTerm(inspection.InspectorName, searchTerm) ||
+            ContainsSearchTerm(inspection.Notes, searchTerm);
+    }
+
+    // Null-safe string matching.
+    private static bool ContainsSearchTerm(
+        string? value,
+        string searchTerm)
+    {
+        return value?.Contains(
+            searchTerm,
+            StringComparison.OrdinalIgnoreCase) == true;
+    }
+
+    // Update the ObservableCollection displayed by the UI.
+    private void UpdateDisplayedInspections(
+        IEnumerable<Inspection> filteredInspections)
+    {
+        Inspections.Clear();
+
+        foreach (Inspection inspection in filteredInspections)
+        {
+            Inspections.Add(inspection);
+        }
+    }
+
+    // Update count and empty-state bindings whenever the collection changes.
     private void OnInspectionsCollectionChanged(
         object? sender,
         NotifyCollectionChangedEventArgs e)
     {
         OnPropertyChanged(nameof(InspectionCountText));
+        OnPropertyChanged(nameof(HasInspections));
     }
 
+    // Handle inspection selection.
     private async Task OnInspectionSelectedAsync(
         Inspection? inspection)
     {
-        if (inspection == null)
+        if (inspection is null)
             return;
 
-        await Application.Current!.MainPage!.DisplayAlert(
-            "Inspection Selected",
-            $"Title: {inspection.Title}\n" +
-            $"Site: {inspection.SiteName}\n" +
-            $"Status: {inspection.Status}\n" +
-            $"Scheduled: {inspection.ScheduledOn:dd MMM yyyy}",
-            "OK");
+        if (Shell.Current is not null)
+        {
+            await Shell.Current.DisplayAlert(
+                "Inspection Selected",
+                $"Title: {inspection.Title}\n" +
+                $"Site: {inspection.SiteName}\n" +
+                $"Status: {inspection.Status}\n" +
+                $"Scheduled: {inspection.ScheduledOn:dd MMM yyyy}",
+                "OK");
+        }
     }
 }

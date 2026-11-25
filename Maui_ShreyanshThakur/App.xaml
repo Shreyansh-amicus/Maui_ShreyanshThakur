@@ -3,10 +3,20 @@
 <Application
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Maui_ShreyanshThakur.Converters"
     x:Class="Maui_ShreyanshThakur.App">
 
     <Application.Resources>
         <ResourceDictionary>
+
+            <converters:StatusToColorConverter
+            x:Key="StatusToColorConverter" />
+
+            <converters:DateToRelativeTextConverter
+            x:Key="DateToRelativeTextConverter" />
+
+            <converters:InverseBooleanConverter
+            x:Key="InverseBooleanConverter" />
 
             <ResourceDictionary.MergedDictionaries>
 

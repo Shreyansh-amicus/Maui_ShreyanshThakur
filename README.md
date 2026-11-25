@@ -829,3 +829,93 @@ The ViewModel does not directly define the page layout. Instead, it exposes prop
 Using MVVM separates responsibilities and makes the application easier to maintain and test.
 
 Changes to the UI can be made without rewriting the data-loading logic, while the ViewModel can manage presentation behavior without depending on the visual layout of the page.
+
+## Task 4: Search and Data Binding Modes
+
+### Implementation
+
+A search Entry was added to `InspectionListPage.xaml` and bound to the `SearchText` property in `InspectionListViewModel` using TwoWay binding.
+
+The list filters automatically whenever the user enters or removes text. No search button is required.
+
+The search checks the following inspection properties:
+
+- Title
+- SiteName
+- Status
+- Priority
+- InspectorName
+- Notes
+
+The search is case-insensitive. Clearing the search Entry displays all inspections again.
+
+The ViewModel maintains the original inspection data separately from the filtered `ObservableCollection`. This ensures that removing or changing a search term can display previously filtered-out inspections.
+
+### Data Binding Modes Used in the Application
+
+| Control | Property | Mode | Direction |
+|---|---|---|---|
+| Entry (Search) | Text | TwoWay | View ↔ ViewModel |
+| CollectionView | ItemsSource | OneWay | ViewModel → View |
+| ListView | ItemsSource | OneWay | ViewModel → View |
+| ActivityIndicator | IsRunning | OneWay | ViewModel → View |
+| ActivityIndicator | IsVisible | OneWay | ViewModel → View |
+| CollectionView | IsVisible | OneWay | ViewModel → View |
+| Label (Inspection Count) | Text | OneWay | ViewModel → View |
+| Button (View Toggle) | Command | OneWay | ViewModel → View |
+| StatusBadge | Status | OneWay | Model → View |
+
+### Why These Binding Modes Were Chosen
+
+**1. TwoWay Binding**
+
+The Search Entry uses TwoWay binding because the user changes the text in the View, and those changes must be reflected in the ViewModel's `SearchText` property. Changes to the property should also be reflected in the Entry.
+
+**2. OneWay Binding**
+
+OneWay binding is used for properties such as `ItemsSource`, `IsVisible`, `IsRunning`, and `Text` because the ViewModel controls the data or state displayed by these controls.
+
+For example:
+- The ViewModel provides the inspection collection to the CollectionView and ListView.
+- The ViewModel controls whether the ActivityIndicator is running through `IsBusy`.
+- The ViewModel controls which inspection layout is visible.
+- The inspection count is calculated in the ViewModel and displayed by a Label.
+
+**3. Command Binding**
+
+The view-toggle buttons use OneWay command bindings because the commands are defined in the ViewModel and exposed to the View. When the user taps a button, the View invokes the corresponding ViewModel command.
+
+**4. StatusBadge Binding**
+
+The StatusBadge receives the inspection's Status property through OneWay binding. The badge displays the status and updates its appearance based on that value. The user does not edit the status through the badge.
+
+### Conclusion
+
+Choosing the correct binding mode helps maintain separation between the View and ViewModel.
+
+TwoWay binding is useful when changes must travel in both directions, such as user-entered search text. OneWay binding is appropriate when the ViewModel supplies information or presentation state that the View only needs to display.
+
+
+## Task 8 - Pull-to-Refresh and Event-Based Handling
+
+### Pull-to-Refresh
+
+The inspection list uses MAUI's RefreshView to support pull-to-refresh.
+
+RefreshView is bound to LoadInspectionsCommand, which uses the custom AsyncRelayCommand implementation.
+
+When the user pulls down:
+1. LoadInspectionsCommand executes.
+2. IsRefreshing becomes true.
+3. The inspection list is reloaded.
+4. IsRefreshing becomes false after completion.
+
+The refresh operation uses the same command protection as the initial loading operation, preventing multiple simultaneous loads.
+
+### Event-Based Selection Handling
+
+The CollectionView uses the SelectionChanged event to handle inspection selection.
+
+An event handler is used in this case because the page needs direct access to the CollectionView's SelectionChangedEventArgs, particularly CurrentSelection, and needs to clear the selected item after handling it.
+
+This is a UI-specific interaction, whereas operations such as login and loading data are better represented by reusable commands.

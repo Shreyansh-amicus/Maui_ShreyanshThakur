@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Maui_ShreyanshThakur.LoginPage"
+    Title="Login"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    SafeAreaEdges="All">
+
+    <ScrollView>
+
+        <Grid Padding="{StaticResource LoginFormPagePadding}">
+
+            <VerticalStackLayout
+                Spacing="{StaticResource LoginFormPageSpacing}"
+                MaximumWidthRequest="{StaticResource LoginFormMaxWidth}"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center">
+
+                <!-- Login Form -->
+                <Border Style="{StaticResource LoginFormCardStyle}">
+
+                    <VerticalStackLayout
+                        Style="{StaticResource LoginFormContentStyle}">
+
+                        <!-- Form Heading -->
+                        <VerticalStackLayout
+                            Style="{StaticResource LoginFormHeadingSectionStyle}">
+
+                            <Label
+                                Text="Sign in to your account"
+                                Style="{StaticResource LoginFormHeadingTextStyle}" />
+
+                            <Label
+                                Text="Enter your credentials to get started."
+                                Style="{StaticResource LoginFormSubtitleTextStyle}" />
+
+                        </VerticalStackLayout>
+
+                        <!-- Email -->
+                        <VerticalStackLayout
+                            Style="{StaticResource LoginFormFieldContainerStyle}">
+
+                            <Label
+                                Text="Email Address"
+                                Style="{StaticResource LoginFieldLabelStyle}" />
+
+                            <Border
+                                Style="{StaticResource LoginFormEntryBorderStyle}">
+
+                                <Entry
+                                    Placeholder="Enter your email"
+                                    Style="{StaticResource LoginFormEntryControlStyle}"
+                                    Keyboard="Email"
+                                    Text="{Binding Email, Mode=TwoWay}"
+                                    ClearButtonVisibility="WhileEditing"
+                                    ReturnType="Next" />
+
+                            </Border>
+
+                            <Label
+                                Text="{Binding EmailError}"
+                                Style="{StaticResource LoginValidationErrorStyle}"
+                                IsVisible="{Binding IsEmailErrorVisible}" />
+
+                        </VerticalStackLayout>
+
+                        <!-- Password -->
+                        <VerticalStackLayout
+                            Style="{StaticResource LoginFormFieldContainerStyle}">
+
+                            <Label
+                                Text="Password"
+                                Style="{StaticResource LoginFieldLabelStyle}" />
+
+                            <Border
+                                Style="{StaticResource LoginFormEntryBorderStyle}">
+
+                                <Entry
+                                    Placeholder="Enter your password"
+                                    Style="{StaticResource LoginFormEntryControlStyle}"
+                                    IsPassword="True"
+                                    Text="{Binding Password, Mode=TwoWay}"
+                                    ReturnType="Go" />
+
+                            </Border>
+
+                            <Label
+                                Text="{Binding PasswordError}"
+                                Style="{StaticResource LoginValidationErrorStyle}"
+                                IsVisible="{Binding IsPasswordErrorVisible}" />
+
+                        </VerticalStackLayout>
+
+                        <!-- Login Button -->
+                        <Button
+                            Text="Sign In"
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsLoginEnabled}"
+                            Style="{StaticResource LoginFormButtonStyle}" />
+
+                        <!-- Credential Error -->
+                        <Label
+                            Text="{Binding LoginError}"
+                            Style="{StaticResource LoginCredentialErrorStyle}"
+                            IsVisible="{Binding IsLoginErrorVisible}"
+                            HorizontalTextAlignment="Center" />
+
+                        <!-- Footer -->
+                        <Label
+                            Text="Inspection Management System"
+                            Style="{StaticResource LoginFormFooterStyle}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+    </ScrollView>
+
+</ContentPage>

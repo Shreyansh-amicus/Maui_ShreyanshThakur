@@ -162,4 +162,61 @@
 
     <x:Double x:Key="DashboardFilterButtonFontSize">13</x:Double>
 
+    <!-- Login Page Dimensions -->
+    <x:Double x:Key="LoginPageSpacing">20</x:Double>
+    <x:Double x:Key="LoginHeaderSpacing">8</x:Double>
+    <x:Double x:Key="LoginFieldSpacing">8</x:Double>
+    <x:Double x:Key="LoginHeaderBottomMargin">20</x:Double>
+    <x:Double x:Key="LoginHeadingFontSize">30</x:Double>
+    <x:Double x:Key="LoginSubtitleFontSize">14</x:Double>
+    <x:Double x:Key="LoginFieldLabelFontSize">14</x:Double>
+    <x:Double x:Key="LoginErrorFontSize">12</x:Double>
+    <x:Double x:Key="LoginButtonFontSize">16</x:Double>
+    <x:Double x:Key="LoginButtonHeight">50</x:Double>
+    <x:Double x:Key="LoginButtonCornerRadius">10</x:Double>
+    <x:Double x:Key="LoginButtonTopMargin">12</x:Double>
+    <Thickness x:Key="LoginHeaderMargin">0,0,0,20</Thickness>
+    <Thickness x:Key="LoginButtonMargin">0,12,0,0</Thickness>
+    
+<!-- Login Form Dimensions -->
+
+<!-- Page Layout -->
+<Thickness x:Key="LoginFormPagePadding">24,40</Thickness>
+<x:Double x:Key="LoginFormPageSpacing">36</x:Double>
+<x:Double x:Key="LoginFormMaxWidth">460</x:Double>
+
+<!-- Card -->
+<Thickness x:Key="LoginFormCardPadding">26</Thickness>
+<x:Double x:Key="LoginFormCardCornerRadius">18</x:Double>
+<x:Double x:Key="LoginFormCardBorderThickness">1</x:Double>
+<x:Double x:Key="LoginFormCardSpacing">24</x:Double>
+
+<!-- Headings -->
+<x:Double x:Key="LoginFormHeadingSpacing">6</x:Double>
+<x:Double x:Key="LoginFormHeadingFontSize">19</x:Double>
+<x:Double x:Key="LoginFormSubtitleFontSize">13</x:Double>
+
+<!-- Input Fields -->
+<x:Double x:Key="LoginFormFieldSpacing">9</x:Double>
+<x:Double x:Key="LoginFormEntryHeight">56</x:Double>
+<x:Double x:Key="LoginFormEntryCornerRadius">10</x:Double>
+<x:Double x:Key="LoginFormEntryBorderThickness">1</x:Double>
+<Thickness x:Key="LoginFormEntryPadding">12,0</Thickness>
+
+<!-- Button -->
+<x:Double x:Key="LoginFormButtonHeight">54</x:Double>
+<x:Double x:Key="LoginFormButtonCornerRadius">10</x:Double>
+<Thickness x:Key="LoginFormButtonMargin">0,2,0,0</Thickness>
+
+<!-- Footer -->
+<x:Double x:Key="LoginFormFooterFontSize">11</x:Double>
+
+<!-- Login Form Dimensions -->
+
+<!-- Page Layout -->
+
+    <x:Double x:Key="LoginFormEntryFontSize">14</x:Double>
+    <x:Double x:Key="LoginFormButtonFontSize">15</x:Double>
+
+
 </ResourceDictionary>

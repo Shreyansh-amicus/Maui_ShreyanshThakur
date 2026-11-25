@@ -4,14 +4,32 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Maui_ShreyanshThakur.Controls"
+    xmlns:converters="clr-namespace:Maui_ShreyanshThakur.Converters"
     x:Class="Maui_ShreyanshThakur.InspectionListPage"
     Title="Inspections"
     BackgroundColor="{StaticResource PageBackgroundColor}"
     SafeAreaEdges="All">
 
-    <Grid
+    <!-- Page-level converter resources -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converters:StatusToColorConverter
+                x:Key="StatusToColorConverter" />
+
+            <converters:DateToRelativeTextConverter
+                x:Key="DateToRelativeTextConverter" />
+
+            <converters:InverseBooleanConverter
+                x:Key="InverseBooleanConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
+        <Grid
         Padding="{StaticResource PagePadding}"
-        RowDefinitions="Auto,Auto,*"
+        RowDefinitions="Auto,Auto,Auto,*"
         RowSpacing="{StaticResource InspectionListPageSpacing}">
 
         <!-- Header -->
@@ -23,28 +41,38 @@
                 Text="{Binding InspectionCountText}"
                 Style="{StaticResource InspectionListCountStyle}" />
 
+            <Button
+                Text="Refresh"
+                Command="{Binding LoadInspectionsCommand}" />   
+
         </VerticalStackLayout>
+
+        <!-- Search -->
+        <Entry
+            Grid.Row="1"
+            Placeholder="Search by title, site, status, priority..."
+            Text="{Binding SearchText, Mode=TwoWay}"
+            ClearButtonVisibility="WhileEditing"
+            ReturnType="Search" />
 
         <!-- View Toggle -->
         <Border
-            Grid.Row="1"
+            Grid.Row="2"
             Style="{StaticResource InspectionViewToggleContainerStyle}">
 
             <Grid
                 ColumnDefinitions="*,*"
                 ColumnSpacing="{StaticResource InspectionViewToggleSpacing}">
 
-                <!-- Collection View Toggle -->
+                <!-- CollectionView Toggle -->
                 <Grid Grid.Column="0">
 
-                    <!-- Selected State -->
                     <Button
                         Text="Collection View"
                         Command="{Binding ShowCollectionViewCommand}"
                         IsVisible="{Binding IsCollectionViewSelected}"
                         Style="{StaticResource InspectionViewSelectedButtonStyle}" />
 
-                    <!-- Unselected State -->
                     <Button
                         Text="Collection View"
                         Command="{Binding ShowCollectionViewCommand}"
@@ -53,17 +81,15 @@
 
                 </Grid>
 
-                <!-- List View Toggle -->
+                <!-- ListView Toggle -->
                 <Grid Grid.Column="1">
 
-                    <!-- Selected State -->
                     <Button
                         Text="List View"
                         Command="{Binding ShowListViewCommand}"
                         IsVisible="{Binding IsListViewSelected}"
                         Style="{StaticResource InspectionViewSelectedButtonStyle}" />
 
-                    <!-- Unselected State -->
                     <Button
                         Text="List View"
                         Command="{Binding ShowListViewCommand}"
@@ -75,10 +101,12 @@
             </Grid>
 
         </Border>
-
-
-        <!-- Inspection Display Area -->
-        <Grid Grid.Row="2">
+        <RefreshView
+            Command="{Binding LoadInspectionsCommand}"
+            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+            Grid.Row="3">
+            <!-- Inspection Display Area -->
+            <Grid>
 
             <!-- Loading Indicator -->
             <VerticalStackLayout
@@ -102,9 +130,10 @@
 
             <!-- CollectionView -->
             <CollectionView
-        ItemsSource="{Binding Inspections}"
-        IsVisible="{Binding IsCollectionViewVisible}"
-        SelectionMode="None">
+                ItemsSource="{Binding Inspections}"
+                IsVisible="{Binding IsCollectionViewVisible}"
+                SelectionMode="Single"
+                SelectionChanged="OnInspectionSelectionChanged">
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
@@ -112,24 +141,28 @@
                         ItemSpacing="{StaticResource InspectionListItemSpacing}" />
                 </CollectionView.ItemsLayout>
 
+                <!-- Empty State -->
                 <CollectionView.EmptyView>
                     <VerticalStackLayout
                         Padding="30"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        Spacing="10">
+                        Spacing="10"
+                        IsVisible="{Binding HasInspections,
+                            Converter={StaticResource InverseBooleanConverter}}">
 
                         <Label
                             Text="No inspections found"
                             Style="{StaticResource EmptyStateTitleStyle}" />
 
                         <Label
-                            Text="Your inspections will appear here."
+                            Text="Try changing your search or clearing it."
                             Style="{StaticResource EmptyStateSubtitleStyle}" />
 
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
 
+                <!-- CollectionView Item Template -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
@@ -138,8 +171,8 @@
 
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.InspectionSelectedCommand}"
-                            CommandParameter="{Binding .}" />
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.InspectionSelectedCommand}"
+                                    CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
 
                             <Grid
@@ -147,6 +180,7 @@
                                 ColumnDefinitions="*,Auto"
                                 RowSpacing="{StaticResource InspectionListCardSpacing}">
 
+                                <!-- Title -->
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
@@ -154,6 +188,7 @@
                                     Text="{Binding Title}"
                                     Style="{StaticResource InspectionListTitleStyle}" />
 
+                                <!-- Site -->
                                 <HorizontalStackLayout
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -169,11 +204,13 @@
 
                                 </HorizontalStackLayout>
 
+                                <!-- Status -->
                                 <controls:StatusBadge
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Status="{Binding Status}" />
 
+                                <!-- Scheduled Date -->
                                 <HorizontalStackLayout
                                     Grid.Row="2"
                                     Grid.Column="0"
@@ -181,12 +218,13 @@
                                     Spacing="6">
 
                                     <Label
-                                Text="Scheduled:"
-                                Style="{StaticResource InspectionListMetaLabelStyle}" />
+                                        Text="Scheduled:"
+                                        Style="{StaticResource InspectionListMetaLabelStyle}" />
 
                                     <Label
-                                Text="{Binding ScheduledOn, StringFormat='{0:dd MMM yyyy}'}"
-                                Style="{StaticResource InspectionListMetaValueStyle}" />
+                                        Text="{Binding ScheduledOn,
+                                            Converter={StaticResource DateToRelativeTextConverter}}"
+                                        Style="{StaticResource InspectionListMetaValueStyle}" />
 
                                 </HorizontalStackLayout>
 
@@ -206,7 +244,7 @@
                 SelectionMode="None"
                 SeparatorVisibility="None"
                 HasUnevenRows="True"
-                BackgroundColor="Transparent">  
+                BackgroundColor="Transparent">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -214,62 +252,68 @@
                         <ViewCell>
 
                             <Grid
-                        Padding="{StaticResource InspectionListViewItemSpacing}">
+                                Padding="{StaticResource InspectionListViewItemSpacing}">
 
                                 <Border
-                            Style="{StaticResource InspectionListCardStyle}">
+                                    Style="{StaticResource InspectionListCardStyle}">
 
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.InspectionSelectedCommand}"
-                                    CommandParameter="{Binding .}" />
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.InspectionSelectedCommand}"
+                                            CommandParameter="{Binding .}" />
                                     </Border.GestureRecognizers>
 
                                     <Grid
-                                RowDefinitions="Auto,Auto,Auto"
-                                ColumnDefinitions="*,Auto"
-                                RowSpacing="{StaticResource InspectionListCardSpacing}">
+                                        RowDefinitions="Auto,Auto,Auto"
+                                        ColumnDefinitions="*,Auto"
+                                        RowSpacing="{StaticResource InspectionListCardSpacing}">
 
+                                        <!-- Title -->
                                         <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    Text="{Binding Title}"
-                                    Style="{StaticResource InspectionListTitleStyle}" />
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Title}"
+                                            Style="{StaticResource InspectionListTitleStyle}" />
 
+                                        <!-- Site -->
                                         <HorizontalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Spacing="6">
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Spacing="6">
 
                                             <Label
-                                        Text="Site:"
-                                        Style="{StaticResource InspectionListMetaLabelStyle}" />
+                                                Text="Site:"
+                                                Style="{StaticResource InspectionListMetaLabelStyle}" />
 
                                             <Label
-                                        Text="{Binding SiteName}"
-                                        Style="{StaticResource InspectionListMetaValueStyle}" />
+                                                Text="{Binding SiteName}"
+                                                Style="{StaticResource InspectionListMetaValueStyle}" />
 
                                         </HorizontalStackLayout>
 
+                                        <!-- Status -->
+                                        <!-- Status -->
                                         <controls:StatusBadge
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Status="{Binding Status}" />
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Status="{Binding Status}" />
 
+                                        <!-- Scheduled Date -->
                                         <HorizontalStackLayout
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    Spacing="6">
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Spacing="6">
 
                                             <Label
-                                        Text="Scheduled:"
-                                        Style="{StaticResource InspectionListMetaLabelStyle}" />
+                                                Text="Scheduled:"
+                                                Style="{StaticResource InspectionListMetaLabelStyle}" />
 
                                             <Label
-                                        Text="{Binding ScheduledOn, StringFormat='{0:dd MMM yyyy}'}"
-                                        Style="{StaticResource InspectionListMetaValueStyle}" />
+                                                Text="{Binding ScheduledOn,
+                                                    Converter={StaticResource DateToRelativeTextConverter}}"
+                                                Style="{StaticResource InspectionListMetaValueStyle}" />
 
                                         </HorizontalStackLayout>
 
@@ -287,8 +331,8 @@
             </ListView>
 
         </Grid>
-
+        </RefreshView>
 
     </Grid>
-
+    
 </ContentPage>

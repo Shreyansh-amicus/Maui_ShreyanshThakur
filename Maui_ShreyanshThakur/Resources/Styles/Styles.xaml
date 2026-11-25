@@ -2077,6 +2077,245 @@
 
     </Style>
 
+    <!-- Login Page Heading -->
+    <Style
+    x:Key="LoginHeadingStyle"
+    TargetType="Label">
+
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginHeadingFontSize}" />
+
+        <Setter Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginHeadingColor}" />
+
+        <Setter Property="HorizontalOptions"
+            Value="Center" />
+
+    </Style>
+
+    <!-- Login Page Subtitle -->
+    <Style
+    x:Key="LoginSubtitleStyle"
+    TargetType="Label">
+
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginSubtitleFontSize}" />
+
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginSecondaryTextColor}" />
+
+        <Setter Property="HorizontalTextAlignment"
+            Value="Center" />
+
+    </Style>
+
+    <!-- Login Field Label -->
+    <Style
+    x:Key="LoginFieldLabelStyle"
+    TargetType="Label">
+
+        <Setter Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginFieldLabelFontSize}" />
+
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginHeadingColor}" />
+
+    </Style>
+
+    <!-- Login Entry -->
+    <Style
+    x:Key="LoginEntryStyle"
+    TargetType="Entry">
+
+        <Setter Property="FontFamily"
+            Value="PoppinsRegular" />
+
+        <Setter Property="FontSize"
+        Value="{StaticResource LoginFormEntryFontSize}" />
+        <Setter Property="TextColor"
+        Value="{StaticResource LoginFormEntryTextColor}" />
+        <Setter Property="PlaceholderColor"
+        Value="{StaticResource LoginFormPlaceholderColor}" />
+
+        <Setter Property="BackgroundColor"
+            Value="{StaticResource LoginEntryBackgroundColor}" />
+
+        <Setter Property="HeightRequest"
+            Value="50" />
+
+    </Style>
+
+    <!-- Login Validation Error -->
+    <Style
+    x:Key="LoginValidationErrorStyle"
+    TargetType="Label">
+
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginErrorFontSize}" />
+
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginErrorColor}" />
+
+    </Style>
+
+    <!-- Login Button -->
+    <Style
+    x:Key="LoginButtonStyle"
+    TargetType="Button">
+
+        <Setter Property="BackgroundColor"
+            Value="{StaticResource LoginPrimaryColor}" />
+
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginButtonTextColor}" />
+
+        <Setter Property="FontFamily"
+            Value="PoppinsSemiBold" />
+
+        <Setter Property="FontSize"
+        Value="{StaticResource LoginFormButtonFontSize}" />
+
+        <Setter Property="CornerRadius"
+            Value="{StaticResource LoginButtonCornerRadius}" />
+
+        <Setter Property="HeightRequest"
+            Value="{StaticResource LoginButtonHeight}" />
+
+    </Style>
+
+
+    <!-- Login Form Container -->
+    <Style x:Key="LoginFormCardStyle"
+       TargetType="Border">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor"
+            Value="{StaticResource LoginFormCardBackgroundColor}" />
+        <Setter Property="Stroke"
+            Value="{StaticResource LoginFormCardBorderColor}" />
+        <Setter Property="StrokeThickness"
+            Value="{StaticResource LoginFormCardBorderThickness}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 18" />
+        <Setter Property="Padding"
+            Value="{StaticResource LoginFormCardPadding}" />
+    </Style>
+
+    <!-- Login Form Content -->
+    <Style x:Key="LoginFormContentStyle"
+       TargetType="VerticalStackLayout">
+        <Setter Property="Spacing"
+            Value="{StaticResource LoginFormCardSpacing}" />
+    </Style>
+
+    <!-- Form Heading Section -->
+    <Style x:Key="LoginFormHeadingSectionStyle"
+       TargetType="VerticalStackLayout">
+        <Setter Property="Spacing"
+            Value="{StaticResource LoginFormHeadingSpacing}" />
+    </Style>
+
+    <!-- Form Heading -->
+    <Style x:Key="LoginFormHeadingTextStyle"
+       TargetType="Label">
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginFormHeadingColor}" />
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginFormHeadingFontSize}" />
+        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
+    </Style>
+
+    <!-- Form Subtitle -->
+    <Style x:Key="LoginFormSubtitleTextStyle"
+       TargetType="Label">
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginFormSubtitleColor}" />
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginFormSubtitleFontSize}" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+    </Style>
+
+    <!-- Field Container -->
+    <Style x:Key="LoginFormFieldContainerStyle"
+       TargetType="VerticalStackLayout">
+        <Setter Property="Spacing"
+            Value="{StaticResource LoginFormFieldSpacing}" />
+    </Style>
+
+    <!-- Input Border -->
+    <Style x:Key="LoginFormEntryBorderStyle"
+       TargetType="Border">
+        <Setter Property="HeightRequest"
+            Value="{StaticResource LoginFormEntryHeight}" />
+        <Setter Property="BackgroundColor"
+            Value="{StaticResource LoginFormEntryBackgroundColor}" />
+        <Setter Property="Stroke"
+            Value="{StaticResource LoginFormEntryBorderColor}" />
+        <Setter Property="StrokeThickness"
+            Value="{StaticResource LoginFormEntryBorderThickness}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Padding"
+            Value="{StaticResource LoginFormEntryPadding}" />
+    </Style>
+
+    <!-- Input Entry -->
+    <Style x:Key="LoginFormEntryControlStyle"
+       TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="#334155" />
+        <Setter Property="PlaceholderColor" Value="#94A3B8" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- Login Button -->
+    <Style x:Key="LoginFormButtonStyle"
+       TargetType="Button">
+        <Setter Property="BackgroundColor"
+            Value="{StaticResource LoginFormButtonBackgroundColor}" />
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginFormButtonTextColor}" />
+        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HeightRequest"
+            Value="{StaticResource LoginFormButtonHeight}" />
+        <Setter Property="CornerRadius"
+            Value="{StaticResource LoginFormButtonCornerRadius}" />
+        <Setter Property="Margin"
+            Value="{StaticResource LoginFormButtonMargin}" />
+    </Style>
+
+    <!-- Login Footer -->
+    <Style x:Key="LoginFormFooterStyle"
+       TargetType="Label">
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+        <Setter Property="FontSize"
+            Value="{StaticResource LoginFormFooterFontSize}" />
+        <Setter Property="TextColor"
+            Value="{StaticResource LoginFormFooterColor}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+
+
+    <!-- Login Credential Error -->
+    <Style
+    x:Key="LoginCredentialErrorStyle"
+    TargetType="Label"
+    BasedOn="{StaticResource LoginValidationErrorStyle}">
+
+        <Setter Property="FontSize"
+            Value="13" />
+
+        <Setter Property="HorizontalTextAlignment"
+            Value="Center" />
+
+    </Style>
+
     <!-- Reusable Card ControlTemplate -->
 
     <ControlTemplate x:Key="ReusableCardTemplate">

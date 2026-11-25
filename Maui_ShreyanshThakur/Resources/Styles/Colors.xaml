@@ -98,4 +98,35 @@
     <Color x:Key="InspectionListCardBorderColor">#011111</Color>
     <Color x:Key="InspectionListCardBackgroundColor">#EFF6FF</Color>
 
+    <!-- Login Page Colors -->
+    <Color x:Key="LoginHeadingColor">#263445</Color>
+    <Color x:Key="LoginSecondaryTextColor">#64748B</Color>
+    <Color x:Key="LoginFieldTextColor">#263445</Color>
+    <Color x:Key="LoginPlaceholderColor">#94A3B8</Color>
+    <Color x:Key="LoginEntryBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="LoginEntryBorderColor">#CBD5E1</Color>
+    <Color x:Key="LoginPrimaryColor">#2563EB</Color>
+    <Color x:Key="LoginButtonTextColor">#FFFFFF</Color>
+    <Color x:Key="LoginErrorColor">#DC2626</Color>
+
+    <!-- Login Form Colors -->
+    <Color x:Key="LoginFormCardBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="LoginFormCardBorderColor">#E2E8F0</Color>
+
+    <Color x:Key="LoginFormHeadingColor">#1E293B</Color>
+    <Color x:Key="LoginFormSubtitleColor">#64748B</Color>
+    <Color x:Key="LoginFormFooterColor">#94A3B8</Color>
+
+    <Color x:Key="LoginFormEntryBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="LoginFormEntryBorderColor">#CBD5E1</Color>
+
+    <Color x:Key="LoginFormButtonBackgroundColor">#2563EB</Color>
+    <Color x:Key="LoginFormButtonTextColor">#FFFFFF</Color>
+
+
+    <Color x:Key="LoginFormEntryTextColor">#334155</Color>
+    <Color x:Key="LoginFormPlaceholderColor">#94A3B8</Color>
+
+
+
 </ResourceDictionary>
