@@ -1,5 +1,4 @@
-﻿
-using Maui_ShreyanshThakur.Models;
+﻿using Maui_ShreyanshThakur.Models;
 using Maui_ShreyanshThakur.ViewModels;
 
 namespace Maui_ShreyanshThakur;
@@ -10,8 +9,18 @@ public partial class InspectionListPage : ContentPage
     {
         InitializeComponent();
 
-        // Connect the page to its ViewModel.
         BindingContext = new InspectionListViewModel();
+    }
+
+    private async void OnNewInspectionClicked(
+        object sender,
+        EventArgs e)
+    {
+        if (BindingContext is not InspectionListViewModel viewModel)
+            return;
+
+        await Navigation.PushModalAsync(
+            new NewInspectionPage(viewModel.AddInspection));
     }
 
     private async void OnInspectionSelectionChanged(
@@ -21,9 +30,6 @@ public partial class InspectionListPage : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is not Inspection inspection)
             return;
 
-        // Event handling is used here because SelectionChangedEventArgs
-        // provides CurrentSelection and PreviousSelection, which are
-        // specific to the CollectionView selection event.
         if (sender is CollectionView collectionView)
         {
             collectionView.SelectedItem = null;

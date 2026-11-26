@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Maui_ShreyanshThakur.Controls"
+    xmlns:converters="clr-namespace:Maui_ShreyanshThakur.Converters"
+    x:Class="Maui_ShreyanshThakur.InspectionDetailPage"
+    Title="Inspection Details"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    SafeAreaEdges="All">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter
+                x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="{StaticResource PagePadding}"
+            Spacing="20">
+
+            <!-- Inspection Details -->
+            <VerticalStackLayout
+                IsVisible="{Binding IsInspectionFound}"
+                Spacing="16">
+
+                <Label
+                    Text="{Binding SelectedInspection.Title}"
+                    FontSize="24"
+                    FontFamily="PoppinsSemiBold"
+                    TextColor="{StaticResource LoginFormHeadingColor}" />
+
+                <Border
+                    Style="{StaticResource InspectionListCardStyle}">
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Inspection ID" />
+                            <Label
+                                Text="{Binding SelectedInspection.Id}"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Site Name" />
+                            <Label
+                                Text="{Binding SelectedInspection.SiteName}"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Status" />
+                            <controls:StatusBadge
+                                Status="{Binding SelectedInspection.Status}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Priority" />
+                            <Label
+                                Text="{Binding SelectedInspection.Priority}"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Scheduled On" />
+                            <Label
+                                Text="{Binding SelectedInspection.ScheduledOn,
+                                    StringFormat='{0:dd MMM yyyy}'}"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Inspector" />
+                            <Label
+                                Text="{Binding SelectedInspection.InspectorName}"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Notes" />
+                            <Label
+                                Text="{Binding SelectedInspection.Notes}"
+                                FontAttributes="Bold" />
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Inspection Not Found -->
+            <VerticalStackLayout
+                IsVisible="{Binding IsInspectionFound,
+                    Converter={StaticResource InverseBooleanConverter}}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Spacing="10">
+
+                <Label
+                    Text="Inspection not found"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center" />
+
+                <Label
+                    Text="The requested inspection could not be located."
+                    HorizontalTextAlignment="Center" />
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

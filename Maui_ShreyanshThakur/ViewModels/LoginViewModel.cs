@@ -155,8 +155,7 @@ public class LoginViewModel : BaseViewModel
         try
         {
             // Navigate to the registered dashboard route.
-            await Shell.Current.GoToAsync(
-                nameof(DashboardPage));
+            await Shell.Current.GoToAsync("//main/dashboard");
         }
         catch (Exception ex)
         {

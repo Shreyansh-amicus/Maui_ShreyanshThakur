@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <Shell
     x:Class="Maui_ShreyanshThakur.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -6,10 +7,45 @@
     xmlns:local="clr-namespace:Maui_ShreyanshThakur"
     Shell.FlyoutBehavior="Disabled">
 
+    <!-- Login is outside the application's TabBar. -->
     <ShellContent
-        Title="Login"
-        Route="LoginPage"
+        Route="login"
+        Shell.FlyoutItemIsVisible="False"
         ContentTemplate="{DataTemplate local:LoginPage}" />
 
+    <!-- Main application navigation. -->
+    <TabBar Route="main">
+
+        <Tab
+            Title="Dashboard"
+            Route="dashboard"
+            Icon="dashboard.png">
+
+            <ShellContent
+                ContentTemplate="{DataTemplate local:DashboardPage}" />
+
+        </Tab>
+
+        <Tab
+            Title="Inspections"
+            Route="inspections"
+            Icon="inspections.png">
+
+            <ShellContent
+                ContentTemplate="{DataTemplate local:InspectionListPage}" />
+
+        </Tab>
+
+        <Tab
+            Title="Profile"
+            Route="profile"
+            Icon="profile.png">
+
+            <ShellContent
+                ContentTemplate="{DataTemplate local:InspectorProfilePage}" />
+
+        </Tab>
+
+    </TabBar>
 
 </Shell>

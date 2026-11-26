@@ -1,30 +1,20 @@
-namespace Maui_ShreyanshThakur
+
+using Maui_ShreyanshThakur;
+
+namespace Maui_ShreyanshThakur;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            Routing.RegisterRoute(
-                nameof(InspectorProfilePage),
-                typeof(InspectorProfilePage));
+        Routing.RegisterRoute(
+            nameof(InspectionDetailPage),
+            typeof(InspectionDetailPage));
 
-            Routing.RegisterRoute(
-                nameof(InspectionListPage),
-                typeof(InspectionListPage));
-
-            Routing.RegisterRoute(
-                nameof(InspectionListListViewPage),
-                typeof(InspectionListListViewPage));
-
-            Routing.RegisterRoute(
-                nameof(InspectionFilterPage),
-                typeof(InspectionFilterPage));
-
-            Routing.RegisterRoute(
-                nameof(DashboardPage),
-                typeof(DashboardPage));
-        }
+        Routing.RegisterRoute(
+            nameof(InspectionFilterPage),
+            typeof(InspectionFilterPage));
     }
 }

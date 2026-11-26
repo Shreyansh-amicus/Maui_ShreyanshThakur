@@ -29,20 +29,7 @@
 
                 </VerticalStackLayout>
 
-                <Border
-                    Grid.Column="1"
-                    Style="{StaticResource DashboardProfileButtonStyle}">
-
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="OnOpenProfileClicked" />
-                    </Border.GestureRecognizers>
-
-                    <Label
-                        Text="Profile"
-                        Style="{StaticResource DashboardProfileButtonLabelStyle}" />
-
-                </Border>
+                
 
             </Grid>
 
@@ -267,22 +254,7 @@
 
                     </VerticalStackLayout>
 
-                    <!-- View All -->
-
-                    <Border
-                        Grid.Column="1"
-                        Style="{StaticResource DashboardViewAllStyle}">
-
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Tapped="OnViewAllInspectionsClicked" />
-                        </Border.GestureRecognizers>
-
-                        <Label
-                            Text="View All →"
-                            Style="{StaticResource DashboardViewAllLabelStyle}" />
-
-                    </Border>
+                    
 
                 </Grid>
 

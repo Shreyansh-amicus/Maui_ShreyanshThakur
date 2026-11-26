@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Maui_ShreyanshThakur.NewInspectionPage"
+    Title="New Inspection"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    SafeAreaEdges="All">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="16">
+
+            <Label
+                Text="Create New Inspection"
+                FontSize="24"
+                FontFamily="PoppinsSemiBold"
+                TextColor="Black" />
+
+            <Label
+                Text="Enter the details for the new inspection."
+                FontSize="14"
+                TextColor="Gray" />
+
+            <!-- Inspection Title -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Inspection Title *" />
+
+                <Entry
+                    Placeholder="Enter inspection title"
+                    Text="{Binding Title, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Site Name -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Site Name *" />
+
+                <Entry
+                    Placeholder="Enter site name"
+                    Text="{Binding SiteName, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Status -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Status" />
+
+                <Picker
+                    Title="Select status"
+                    SelectedItem="{Binding Status, Mode=TwoWay}">
+
+                    <Picker.Items>
+                        <x:String>Pending</x:String>
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                    </Picker.Items>
+
+                </Picker>
+            </VerticalStackLayout>
+
+            <!-- Priority -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Priority" />
+
+                <Picker
+                    Title="Select priority"
+                    SelectedItem="{Binding Priority, Mode=TwoWay}">
+
+                    <Picker.Items>
+                        <x:String>Low</x:String>
+                        <x:String>Medium</x:String>
+                        <x:String>High</x:String>
+                    </Picker.Items>
+
+                </Picker>
+            </VerticalStackLayout>
+
+            <!-- Scheduled Date -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Scheduled Date" />
+
+                <DatePicker
+                    Date="{Binding ScheduledOn, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Inspector -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Inspector Name" />
+
+                <Entry
+                    Placeholder="Enter inspector name"
+                    Text="{Binding InspectorName, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Notes -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Notes" />
+
+                <Editor
+                    Placeholder="Enter additional notes"
+                    Text="{Binding Notes, Mode=TwoWay}"
+                    AutoSize="TextChanges"
+                    MinimumHeightRequest="100" />
+            </VerticalStackLayout>
+
+            <!-- Actions -->
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="12"
+                Margin="0,16,0,0">
+
+                <Button
+                    Grid.Column="0"
+                    Text="Cancel"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="Gray"
+                    TextColor="White" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="Save"
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" />
+
+            </Grid>
+
+            <Label
+                Text="* Required fields"
+                FontSize="12"
+                TextColor="Gray" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -41,9 +41,17 @@
                 Text="{Binding InspectionCountText}"
                 Style="{StaticResource InspectionListCountStyle}" />
 
-            <Button
-                Text="Refresh"
-                Command="{Binding LoadInspectionsCommand}" />   
+            <HorizontalStackLayout Spacing="10">
+
+                <Button
+                    Text="New Inspection"
+                    Clicked="OnNewInspectionClicked" />
+
+                <Button
+                    Text="Refresh"
+                    Command="{Binding LoadInspectionsCommand}" />
+
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
 

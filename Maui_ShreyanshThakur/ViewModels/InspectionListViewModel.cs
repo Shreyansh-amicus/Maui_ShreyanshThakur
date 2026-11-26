@@ -135,10 +135,13 @@ public class InspectionListViewModel : BaseViewModel
             // Simulate an API request.
             await Task.Delay(2000);
 
-            _allInspections.Clear();
-
-            _allInspections.AddRange(
-                InspectionSampleData.GetInspections());
+            foreach (Inspection sample in InspectionSampleData.GetInspections())
+            {
+                if (!_allInspections.Any(item => item.Id == sample.Id))
+                {
+                    _allInspections.Add(sample);
+                }
+            }
 
             ApplyFilter();
         }
@@ -220,21 +223,33 @@ public class InspectionListViewModel : BaseViewModel
     }
 
     // Handle inspection selection.
+
     private async Task OnInspectionSelectedAsync(
         Inspection? inspection)
     {
         if (inspection is null)
             return;
 
-        if (Shell.Current is not null)
-        {
-            await Shell.Current.DisplayAlert(
-                "Inspection Selected",
-                $"Title: {inspection.Title}\n" +
-                $"Site: {inspection.SiteName}\n" +
-                $"Status: {inspection.Status}\n" +
-                $"Scheduled: {inspection.ScheduledOn:dd MMM yyyy}",
-                "OK");
-        }
+        await Shell.Current.GoToAsync(
+            nameof(InspectionDetailPage),
+            new Dictionary<string, object>
+            {
+                ["inspectionId"] = inspection.Id
+            });
     }
+
+    public void AddInspection(Inspection inspection)
+    {
+        // Generate the next available inspection ID.
+        inspection.Id = _allInspections.Count == 0
+            ? 1
+            : _allInspections.Max(item => item.Id) + 1;
+
+        // Add to the original collection.
+        _allInspections.Add(inspection);
+
+        // Refresh the displayed collection while preserving search.
+        ApplyFilter();
+    }
+
 }
